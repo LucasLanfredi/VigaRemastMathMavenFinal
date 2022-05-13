@@ -1,4 +1,4 @@
-package org.VigaRemastMath.Validator;
+package org.RemastMathMaven.Validator;
 
 import org.springframework.http.HttpStatus;
 

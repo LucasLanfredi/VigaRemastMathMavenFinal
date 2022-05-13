@@ -1,9 +1,11 @@
-package org.VigaRemastMath.entities;
+package org.RemastMathMaven.entities;
 
+
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-
+@Component
 public class Viga {
 
     private int tamanhodaViga;

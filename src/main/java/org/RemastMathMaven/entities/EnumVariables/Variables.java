@@ -1,4 +1,4 @@
-package org.VigaRemastMath.entities.EnumVariables;
+package org.RemastMathMaven.entities.EnumVariables;
 
 public enum Variables {
 }

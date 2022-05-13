@@ -1,5 +1,8 @@
-package org.VigaRemastMath.entities;
+package org.RemastMathMaven.entities;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Apoios {
 
     private int position;

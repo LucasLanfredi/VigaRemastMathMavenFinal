@@ -1,7 +1,9 @@
-package org.VigaRemastMath.entities;
+package org.RemastMathMaven.entities;
+
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class VigaResponseDTO {
 
         private int tamanhodaViga;

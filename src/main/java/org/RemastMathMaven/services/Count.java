@@ -1,10 +1,11 @@
-package org.VigaRemastMath.services;
+package org.RemastMathMaven.services;
 
-import com.vigaresmath.entities.Viga;
-import com.vigaresmath.entities.VigaResponseDTO;
-import org.springframework.stereotype.Component;
+import org.RemastMathMaven.entities.Viga;
+import org.RemastMathMaven.entities.VigaResponseDTO;
+import org.springframework.stereotype.Repository;
 
-@Component
+
+@Repository
 public class Count {
 
     private VigaResponseDTO VigaResponseDTO;
@@ -14,13 +15,13 @@ public class Count {
         return VigaResponseDTO;
     }
 
-    private int calculoMomento(){
+//    private int calculoMomento(){
+//
+//    }
 
-    }
-
-    private int calculoEsforcosIntenos(){
-
-    }
+//    private int calculoEsforcosIntenos(){
+//
+//    }
 
 
 }

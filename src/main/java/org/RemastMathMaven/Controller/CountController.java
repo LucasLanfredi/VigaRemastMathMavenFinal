@@ -1,12 +1,14 @@
-package org.VigaRemastMath.Controller;
+package org.RemastMathMaven.Controller;
 
-
-
-import org.VigaRemastMath.entities.Apoios;
-import org.VigaRemastMath.entities.ForcasInternas;
-import org.VigaRemastMath.entities.Viga;
-import org.VigaRemastMath.entities.VigaResponseDTO;
-import org.VigaRemastMath.services.Count;
+import org.RemastMathMaven.entities.Apoios;
+import org.RemastMathMaven.entities.ForcasInternas;
+import org.RemastMathMaven.entities.Viga;
+import org.RemastMathMaven.entities.VigaResponseDTO;
+import org.RemastMathMaven.services.Count;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
