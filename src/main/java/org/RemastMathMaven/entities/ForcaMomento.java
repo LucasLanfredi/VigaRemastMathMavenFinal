@@ -6,23 +6,23 @@ import org.springframework.stereotype.Component;
 public class ForcaMomento {
 
     private int position;
-    private int forcaAplicada;
+    private int forcaRotacaoAplicada;
 
-    public ForcaMomento(int position, int forcaAplicada) {
+    public ForcaMomento(int id, int userId, int position, int forcaAplicada) {
         this.position = position;
-        this.forcaAplicada= forcaAplicada;
+        this.forcaRotacaoAplicada = forcaAplicada;
     }
 
-    public void setForcaAplicada(int forcaAplicada) {
-        this.forcaAplicada = forcaAplicada;
+    public void setForcaRotacaoAplicada(int forcaRotacaoAplicada) {
+        this.forcaRotacaoAplicada = forcaRotacaoAplicada;
     }
 
     public void setPosition(int position) {
         this.position = position;
     }
 
-    public int getForcaAplicada() {
-        return forcaAplicada;
+    public int getForcaRotacaoAplicada() {
+        return forcaRotacaoAplicada;
     }
 
     public int getPosition() {

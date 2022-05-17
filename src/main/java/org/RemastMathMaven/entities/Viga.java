@@ -1,51 +1,62 @@
 package org.RemastMathMaven.entities;
 
-
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Optional;
 @Component
 public class Viga {
 
+    private Long IdViga;
     private int tamanhodaViga;
-    private List<ForcasInternas> forcasInternas;
-    private List<Integer> momento;
-    private List<Apoios> apoiosViga;
 
-    public Viga(int tamanhodaViga, Optional<List<Integer>> forcasInternas, Optional<List<Integer>> momento, Optional<List<Apoios>> apoiosViga) {
-        super();
-    }
+    private ForcasInternas forcasInternas;
+    private Apoios apoioInicial;
+    private Apoios apoioFinal;
 
-    public void setApoiosViga(List<Apoios> apoiosViga) {
-        this.apoiosViga = apoiosViga;
-    }
-
-    public void setForcasInternas(List<ForcasInternas> forcasInternas) {
-        this.forcasInternas = forcasInternas;
-    }
-
-    public void setMomento(List<Integer> momento) {
-        this.momento = momento;
-    }
-
-    public void setTamanhodaViga(int tamanhodaViga) {
+    public Viga(Long idViga, int tamanhodaViga, ForcasInternas forcasInternas, Apoios opoioInicial, Apoios apoioFinal) {
+        IdViga = idViga;
         this.tamanhodaViga = tamanhodaViga;
+        this.forcasInternas = forcasInternas;
+        this.apoioInicial = opoioInicial;
+        this.apoioFinal = apoioFinal;
+    }
+
+    public Long getIdViga() {
+        return IdViga;
+    }
+
+    public void setIdViga(Long idViga) {
+        IdViga = idViga;
     }
 
     public int getTamanhodaViga() {
         return tamanhodaViga;
     }
 
-    public List<Apoios> getApoiosViga() {
-        return apoiosViga;
+    public void setTamanhodaViga(int tamanhodaViga) {
+        this.tamanhodaViga = tamanhodaViga;
     }
 
-    public List<ForcasInternas> getForcasInternas() {
+    public ForcasInternas getForcasInternas() {
         return forcasInternas;
     }
 
-    public List<Integer> getMomento() {
-        return momento;
+    public void setForcasInternas(ForcasInternas forcasInternas) {
+        this.forcasInternas = forcasInternas;
+    }
+
+    public Apoios getApoioInicial() {
+        return apoioInicial;
+    }
+
+    public void setApoioInicial(Apoios apoioInicial) {
+        this.apoioInicial = apoioInicial;
+    }
+
+    public Apoios getApoioFinal() {
+        return apoioFinal;
+    }
+
+    public void setApoioFinal(Apoios apoioFinal) {
+        this.apoioFinal = apoioFinal;
     }
 }

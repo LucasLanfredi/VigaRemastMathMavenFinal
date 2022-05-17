@@ -1,9 +1,7 @@
 package org.RemastMathMaven.Controller;
 
-import org.RemastMathMaven.entities.Apoios;
-import org.RemastMathMaven.entities.ForcasInternas;
-import org.RemastMathMaven.entities.Viga;
-import org.RemastMathMaven.entities.VigaResponseDTO;
+import org.RemastMathMaven.Validator.ValidateValues;
+import org.RemastMathMaven.entities.*;
 import org.RemastMathMaven.services.Count;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +31,7 @@ public class CountController {
     private List<Apoios> apoiosViga;
 
     @Autowired
-    private VigaResponseDTO vigaResponseDTO;
+    private VigaDTO vigaResponseDTO;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -41,9 +39,17 @@ public class CountController {
     @Autowired
     private Count count;
 
-    @GetMapping("/com/vigaresmath/entities")
-    public ResponseEntity<VigaResponseDTO> save(@RequestBody VigaResponseDTO VigaResponseDTO) {
-        Viga viga = modelMapper.map(VigaResponseDTO, Viga.class);
+    @Autowired
+    private ValidateValues validateValues;
+
+    @Autowired
+    private Forcas forcas;
+
+    @GetMapping("/result")
+    public ResponseEntity<VigaResponseDTO> result(@RequestBody VigaDTO VigaDTO) {
+        Viga viga = modelMapper.map(VigaDTO, Viga.class);
+        validateValues.verficarVigaisValid(viga);
+        validateValues.verificarForcasisValid(viga);
         VigaResponseDTO dto = count.countForcasDaViga(viga);
 
         return ResponseEntity.ok().body(dto);

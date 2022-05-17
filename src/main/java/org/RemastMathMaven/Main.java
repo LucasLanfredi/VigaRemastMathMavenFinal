@@ -1,10 +1,12 @@
 package org.RemastMathMaven;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 
 public class Main implements CommandLineRunner {
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        SpringApplication.run(Main.class, args);
     }
 
     @Override

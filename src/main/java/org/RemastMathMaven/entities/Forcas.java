@@ -2,15 +2,29 @@ package org.RemastMathMaven.entities;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
-public class ForcaPontual {
+public class Forcas {
 
     private int position;
+    private int positionFinal;
     private int forcaAplicada;
+    private int forcaAplicadaFinal;
 
-    public ForcaPontual( int position, int forcaAplicada) {
+    public Forcas() {
+    }
+
+    public Forcas(int position, int value) {
         this.position = position;
+        this.forcaAplicada = value;
+    }
+
+    public Forcas(int position, int positionFinal, int forcaAplicada, int forcaAplicadaFinal) {
+        this.position = position;
+        this.positionFinal = positionFinal;
         this.forcaAplicada = forcaAplicada;
+        this.forcaAplicadaFinal = forcaAplicadaFinal;
     }
 
     public int getPosition() {
@@ -27,5 +41,9 @@ public class ForcaPontual {
 
     public void setForcaAplicada(int forcaAplicada) {
         this.forcaAplicada = forcaAplicada;
+    }
+
+    public static List<Forcas> generateList() {
+        return List.of(new Forcas());
     }
 }

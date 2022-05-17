@@ -2,26 +2,29 @@ package org.RemastMathMaven.services;
 
 import org.RemastMathMaven.entities.Viga;
 import org.RemastMathMaven.entities.VigaResponseDTO;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
-@Repository
+@Service
 public class Count {
 
-    private VigaResponseDTO VigaResponseDTO;
+    @Autowired
+    private final EsforcoCortanteService esforcoCortanteService;
 
-    public VigaResponseDTO countForcasDaViga(Viga viga){
+    @Autowired
+    private final ReacoesService reacoesService;
 
-        return VigaResponseDTO;
+    public Count(EsforcoCortanteService esforcoCortanteService, ReacoesService reacoesService) {
+        this.esforcoCortanteService = esforcoCortanteService;
+        this.reacoesService = reacoesService;
     }
 
-//    private int calculoMomento(){
-//
-//    }
+    public VigaResponseDTO countForcasDaViga(Viga viga) {
+        reacoesService.setApoioValues(viga);
+        esforcoCortanteService.calculoDoEsforcoCortante(viga);
 
-//    private int calculoEsforcosIntenos(){
-//
-//    }
-
+        VigaResponseDTO vigaResponseDTO = new VigaResponseDTO(viga);
+        return vigaResponseDTO;
+    }
 
 }
