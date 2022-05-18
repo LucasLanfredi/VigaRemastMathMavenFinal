@@ -4,6 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="faf06612-d716-4472-a392-8521c4630d7d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/EsforcoCortanteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/EsforcoCortanteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java" afterDir="false" />
+    </list>
     <list default="true" id="faf06612-d716-4472-a392-8521c4630d7d" name="Changes" comment="Commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +62,10 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.RemastMathMaven.Validator" />
