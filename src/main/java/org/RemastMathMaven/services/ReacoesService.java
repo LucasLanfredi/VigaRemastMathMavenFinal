@@ -34,7 +34,7 @@ public class ReacoesService extends ForcasService {
 
         if (!forcaPontualList.isEmpty()) { sumPontual(sumForcasReacoes, forcaPontualList, referencePoint); }
         if (!forcaMomentoList.isEmpty()) { sumMomentoList(sumForcasReacoes, forcaMomentoList); }
-        if (!forcaDistribuidaList.isEmpty()) { sumDistribuida(sumForcasReacoes, forcaDistribuidaList); }
+        if (!forcaDistribuidaList.isEmpty()) { sumDistribuida(sumForcasReacoes, forcaDistribuidaList, referencePoint); }
 
         int forcaDeReacaoDoApoio2 = sumForcasReacoes / (positionApoioFinal - referencePoint );
         return forcaDeReacaoDoApoio2;
@@ -58,10 +58,32 @@ public class ReacoesService extends ForcasService {
         return sumForcasMomento;
     }
 
-    private int sumDistribuida(int sumForcasMomento, List<ForcaDistribuida> forcaDistribuidaList) {
+    private int sumDistribuida(int sumForcasMomento, List<ForcaDistribuida> forcaDistribuidaList, int referencePoint) {
+
         for (ForcaDistribuida forcaDistribuida : forcaDistribuidaList) {
-            sumForcasMomento += (((forcaDistribuida.getForcaAplicadaInit() + forcaDistribuida.getForcaAplicadaEnd()) / 2) *
-                    (forcaDistribuida.getForcaAplicadaEnd() - forcaDistribuida.getForcaAplicadaEnd()));
+            if(forcaDistribuida.getForcaAplicadaInit() == forcaDistribuida.getForcaAplicadaEnd()){
+
+                forcaDistribuida.setPositionEquivalente((forcaDistribuida.getPositionInit() + forcaDistribuida.getPositionEnd())/2);
+                forcaDistribuida.setForcaResultante(forcaDistribuida.getForcaAplicadaInit() *
+                        Math.abs(forcaDistribuida.getPositionEnd() - forcaDistribuida.getPositionInit()));
+
+            }
+            else {
+
+                forcaDistribuida.setPositionEquivalente(
+                        ((forcaDistribuida.getPositionInit() + (forcaDistribuida.getPositionEnd() - forcaDistribuida.getPositionInit()))
+                                * (((forcaDistribuida.getForcaAplicadaInit()/3) + ((2*forcaDistribuida.getForcaAplicadaEnd())/3)) /
+                        (forcaDistribuida.getPositionInit() + forcaDistribuida.getPositionEnd())))
+                );
+                forcaDistribuida.setForcaResultante(
+                        ((forcaDistribuida.getForcaAplicadaInit() + forcaDistribuida.getForcaAplicadaEnd())/2) *
+                                (forcaDistribuida.getPositionEnd() - forcaDistribuida.getPositionInit())
+                );
+
+
+            }
+
+            sumForcasMomento += forcaDistribuida.getForcaResultante()*(forcaDistribuida.getPositionEquivalente() - referencePoint);
         }
         return sumForcasMomento;
     }

@@ -5,23 +5,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class ForcaDistribuida {
 
-    private final int id;
+    private int positionEquivalente;
+    private int forcaResultante;
 
     private int positionInit;
     private int positionEnd;
     private int forcaAplicadaInit;
     private int forcaAplicadaEnd;
 
-    public ForcaDistribuida(int id, int positionInit, int positionEnd, int forcaAplicadaInit, int forcaAplicadaEnd) {
-        this.id = id;
+    public ForcaDistribuida(int positionInit, int positionEnd, int forcaAplicadaInit, int forcaAplicadaEnd) {
         this.positionInit = positionInit;
         this.positionEnd = positionEnd;
         this.forcaAplicadaInit = forcaAplicadaInit;
         this.forcaAplicadaEnd = forcaAplicadaEnd;
     }
 
-    public int getId() {
-        return id;
+    public int getPositionEquivalente() {
+        return positionEquivalente;
+    }
+
+    public void setPositionEquivalente(int positionEquivalente){
+        this.positionEquivalente = positionEquivalente;
+    }
+
+    public int getForcaResultante() {
+        return forcaResultante;
+    }
+
+    public void setForcaResultante(int forcaResultante) {
+        this.forcaResultante = forcaResultante;
     }
 
     public int getPositionInit() {

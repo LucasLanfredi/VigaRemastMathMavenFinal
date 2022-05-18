@@ -41,4 +41,16 @@ public class ForcasInternas {
     public void setMomento(Optional<List<ForcaMomento>> momento) {
         this.momento = momento;
     }
+
+    public List<ForcaPontual> listarForcasPontuais(ForcasInternas forcasInternas) {
+        return forcasInternas.getPontual().get();
+    }
+
+    public List<ForcaDistribuida> listarForcasDistribuida(ForcasInternas forcasInternas) {
+        return forcasInternas.getDistribuida().get();
+    }
+
+    public List<ForcaMomento> listarForcasMomento(ForcasInternas forcasInternas) {
+        return forcasInternas.getMomento().get();
+    }
 }
