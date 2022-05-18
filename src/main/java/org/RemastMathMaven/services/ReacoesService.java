@@ -1,9 +1,6 @@
 package org.RemastMathMaven.services;
 
-import org.RemastMathMaven.entities.ForcaMomento;
-import org.RemastMathMaven.entities.ForcaPontual;
-import org.RemastMathMaven.entities.ForcasInternas;
-import org.RemastMathMaven.entities.Viga;
+import org.RemastMathMaven.entities.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,24 +27,42 @@ public class ReacoesService extends ForcasService {
     }
 
     public int sumForcasMomentoParaDescobrirForcaNoApoio(ForcasInternas forcasInternas, int referencePoint, int positionApoioFinal) {
-        int sumForcasMomento = 0;
+        int sumForcasReacoes = 0;
         List<ForcaPontual> forcaPontualList = listarForcasPontuais(forcasInternas);
         List<ForcaMomento> forcaMomentoList = listarForcasMomento(forcasInternas);
-        if (!forcaPontualList.isEmpty()) {
-            for (ForcaPontual forcaPontual : forcaPontualList) {
-                sumForcasMomento += (forcaPontual.getForcaAplicada() * (forcaPontual.getPosition() - referencePoint));
-            }
-        }
-        if (!forcaMomentoList.isEmpty()) {
-            for (ForcaMomento forcaMomento : forcaMomentoList) {
-                sumForcasMomento -= forcaMomento.getForcaRotacaoAplicada();
-            }
-        }
-        sumForcasMomento = sumForcasMomento / (referencePoint - positionApoioFinal);
-        return sumForcasMomento;
+        List<ForcaDistribuida> forcaDistribuidaList = listarForcasDistribuida(forcasInternas);
+
+        if (!forcaPontualList.isEmpty()) { sumPontual(sumForcasReacoes, forcaPontualList, referencePoint); }
+        if (!forcaMomentoList.isEmpty()) { sumMomentoList(sumForcasReacoes, forcaMomentoList); }
+        if (!forcaDistribuidaList.isEmpty()) { sumDistribuida(sumForcasReacoes, forcaDistribuidaList); }
+
+        int forcaDeReacaoDoApoio2 = sumForcasReacoes / (positionApoioFinal - referencePoint );
+        return forcaDeReacaoDoApoio2;
     }
 
     public int forcaDoApoioInicial(int forcaDoApoioFinal, int sumForcasPontuais) {
         return forcaDoApoioFinal - sumForcasPontuais;
+    }
+
+    private int sumPontual(int sumForcasMomento, List<ForcaPontual> forcaPontualList, int referencePoint) {
+        for (ForcaPontual forcaPontual : forcaPontualList) {
+            sumForcasMomento += (forcaPontual.getForcaAplicada() * (forcaPontual.getPosition() - referencePoint));
+        }
+        return sumForcasMomento;
+    }
+
+    private int sumMomentoList(int sumForcasMomento, List<ForcaMomento> forcaMomentoList) {
+        for (ForcaMomento forcaMomento : forcaMomentoList) {
+            sumForcasMomento -= forcaMomento.getForcaRotacaoAplicada();
+        }
+        return sumForcasMomento;
+    }
+
+    private int sumDistribuida(int sumForcasMomento, List<ForcaDistribuida> forcaDistribuidaList) {
+        for (ForcaDistribuida forcaDistribuida : forcaDistribuidaList) {
+            sumForcasMomento += (((forcaDistribuida.getForcaAplicadaInit() + forcaDistribuida.getForcaAplicadaEnd()) / 2) *
+                    (forcaDistribuida.getForcaAplicadaEnd() - forcaDistribuida.getForcaAplicadaEnd()));
+        }
+        return sumForcasMomento;
     }
 }
