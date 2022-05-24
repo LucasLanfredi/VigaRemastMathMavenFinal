@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faf06612-d716-4472-a392-8521c4630d7d" name="Changes" comment="Commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/PositionFindService.java" afterDir="false" />
+    <list default="true" id="faf06612-d716-4472-a392-8521c4630d7d" name="Changes" comment="Terminei ReacoesService.java e comecei o EsforcoCortanteService.java">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Secoes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcaDistribuida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcaDistribuida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasInternas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasInternas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/EsforcoCortanteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/EsforcoCortanteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +57,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="org.RemastMathMaven.Validator" />
       <recent name="org.RemastMathMaven.entities" />
+      <recent name="org.RemastMathMaven.Validator" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.RemastMathMaven.Main" />
+      <module name="VigaRemastMathMaven-master" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -87,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652902593194</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Terminei ReacoesService.java e comecei o EsforcoCortanteService.java">
+      <created>1652918032428</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652918032428</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,6 +117,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+    <MESSAGE value="Terminei ReacoesService.java e comecei o EsforcoCortanteService.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Terminei ReacoesService.java e comecei o EsforcoCortanteService.java" />
   </component>
 </project>
