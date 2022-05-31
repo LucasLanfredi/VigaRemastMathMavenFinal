@@ -36,7 +36,7 @@ public class ValidateValues {
     }
 
     public void verificarForcasisValid(Viga viga) {
-        List<Forcas> listaForcas = forcasService.getAllListaForcas(viga.getForcasInternas());
+        List<Forcas> listaForcas = forcasService.getAllListaForcas(viga);
         if (listaForcas.isEmpty()) {
             ResponseEntity.badRequest().body(FORCAS_IS_EMPTY);
         }

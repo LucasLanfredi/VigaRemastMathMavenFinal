@@ -9,16 +9,16 @@ import java.util.List;
 public class ReacoesService extends ForcasService {
 
     public void setApoioValues(Viga viga) {
-        int sumForcasPontuais = sumForcasPontuais(viga.getForcasInternas());
-        int forcaDoApoioFinal = sumForcasMomentoParaDescobrirForcaNoApoio(viga.getForcasInternas(), viga.getApoioInicial().getPosition(),
+        int sumForcasPontuais = sumForcasPontuais(viga);
+        int forcaDoApoioFinal = sumForcasMomentoParaDescobrirForcaNoApoio(viga, viga.getApoioInicial().getPosition(),
                 viga.getApoioFinal().getPosition());
         int forcaDoApoioInicial = forcaDoApoioInicial(forcaDoApoioFinal, sumForcasPontuais);
         viga.getApoioInicial().setForcaDoApoio(forcaDoApoioInicial);
         viga.getApoioFinal().setForcaDoApoio(forcaDoApoioFinal);
     }
 
-    public int sumForcasPontuais(ForcasInternas forcasInternas) {
-        List<ForcaPontual> forcaPontualList = listarForcasPontuais(forcasInternas);
+    public int sumForcasPontuais(Viga viga) {
+        List<ForcaPontual> forcaPontualList = viga.listarForcasPontuais();
         int sumForcasPontuais = 0;
         for (ForcaPontual forcaPontual : forcaPontualList) {
             sumForcasPontuais += forcaPontual.getForcaAplicada();
@@ -26,18 +26,24 @@ public class ReacoesService extends ForcasService {
         return sumForcasPontuais;
     }
 
-    public int sumForcasMomentoParaDescobrirForcaNoApoio(ForcasInternas forcasInternas, int referencePoint, int positionApoioFinal) {
+    public int sumForcasMomentoParaDescobrirForcaNoApoio(Viga viga, int referencePoint, int positionApoioFinal) {
+
         int sumForcasReacoes = 0;
-        List<ForcaPontual> forcaPontualList = listarForcasPontuais(forcasInternas);
-        List<ForcaMomento> forcaMomentoList = listarForcasMomento(forcasInternas);
-        List<ForcaDistribuida> forcaDistribuidaList = listarForcasDistribuida(forcasInternas);
+
+        List<ForcaPontual> forcaPontualList = viga.listarForcasPontuais();
+        List<ForcaMomento> forcaMomentoList = viga.listarForcasMomento();
+        List<ForcaDistribuida> forcaDistribuidaList = viga.listarForcasDistribuida();
 
         if (!forcaPontualList.isEmpty()) { sumPontual(sumForcasReacoes, forcaPontualList, referencePoint); }
         if (!forcaMomentoList.isEmpty()) { sumMomentoList(sumForcasReacoes, forcaMomentoList); }
-        if (!forcaDistribuidaList.isEmpty()) { sumDistribuida(sumForcasReacoes, forcaDistribuidaList); }
+        if (!forcaDistribuidaList.isEmpty()) { sumDistribuida(sumForcasReacoes, forcaDistribuidaList, referencePoint); }
 
+        viga.getForcasInternas().setValueOnForcasPontual(referencePoint, sumForcasReacoes);
         int forcaDeReacaoDoApoio2 = sumForcasReacoes / (positionApoioFinal - referencePoint );
+        viga.getForcasInternas().setValueOnForcasPontual(referencePoint, forcaDeReacaoDoApoio2);
+
         return forcaDeReacaoDoApoio2;
+
     }
 
     public int forcaDoApoioInicial(int forcaDoApoioFinal, int sumForcasPontuais) {
@@ -58,10 +64,32 @@ public class ReacoesService extends ForcasService {
         return sumForcasMomento;
     }
 
-    private int sumDistribuida(int sumForcasMomento, List<ForcaDistribuida> forcaDistribuidaList) {
+    private int sumDistribuida(int sumForcasMomento, List<ForcaDistribuida> forcaDistribuidaList, int referencePoint) {
+
         for (ForcaDistribuida forcaDistribuida : forcaDistribuidaList) {
-            sumForcasMomento += (((forcaDistribuida.getForcaAplicadaInit() + forcaDistribuida.getForcaAplicadaEnd()) / 2) *
-                    (forcaDistribuida.getForcaAplicadaEnd() - forcaDistribuida.getForcaAplicadaEnd()));
+            if(forcaDistribuida.getForcaAplicadaInit() == forcaDistribuida.getForcaAplicadaEnd()){
+
+                forcaDistribuida.setPositionEquivalente((forcaDistribuida.getPositionInit() + forcaDistribuida.getPositionEnd())/2);
+                forcaDistribuida.setForcaResultante(forcaDistribuida.getForcaAplicadaInit() *
+                        Math.abs(forcaDistribuida.getPositionEnd() - forcaDistribuida.getPositionInit()));
+
+            }
+            else {
+
+                forcaDistribuida.setPositionEquivalente(
+                        ((forcaDistribuida.getPositionInit() + (forcaDistribuida.getPositionEnd() - forcaDistribuida.getPositionInit()))
+                                * (((forcaDistribuida.getForcaAplicadaInit()/3) + ((2*forcaDistribuida.getForcaAplicadaEnd())/3)) /
+                        (forcaDistribuida.getPositionInit() + forcaDistribuida.getPositionEnd())))
+                );
+                forcaDistribuida.setForcaResultante(
+                        ((forcaDistribuida.getForcaAplicadaInit() + forcaDistribuida.getForcaAplicadaEnd())/2) *
+                                (forcaDistribuida.getPositionEnd() - forcaDistribuida.getPositionInit())
+                );
+
+
+            }
+
+            sumForcasMomento += forcaDistribuida.getForcaResultante()*(forcaDistribuida.getPositionEquivalente() - referencePoint);
         }
         return sumForcasMomento;
     }
