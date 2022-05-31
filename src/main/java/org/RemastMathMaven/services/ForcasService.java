@@ -8,11 +8,11 @@ import java.util.List;
 @Service
 public class ForcasService {
 
-    public List<Forcas> getAllListaForcas(ForcasInternas forcasInternas) {
+    public List<Forcas> getAllListaForcas(Viga viga) {
         List<Forcas> listaDeForcas = Forcas.generateList();
-        List<ForcaPontual> listaForcasPontual = listarForcasPontuais(forcasInternas);
-        List<ForcaDistribuida> listaForcasDistribuida = listarForcasDistribuida(forcasInternas);
-        List<ForcaMomento> listaForcasMomento = listarForcasMomento(forcasInternas);
+        List<ForcaPontual> listaForcasPontual = viga.listarForcasPontuais();
+        List<ForcaDistribuida> listaForcasDistribuida = viga.listarForcasDistribuida();
+        List<ForcaMomento> listaForcasMomento = viga.listarForcasMomento();
 
         if (!listaForcasPontual.isEmpty()) {
             for (ForcaPontual forcaPontual : listaForcasPontual) {
@@ -35,18 +35,6 @@ public class ForcasService {
             }
         }
         return listaDeForcas;
-    }
-
-    public List<ForcaPontual> listarForcasPontuais(ForcasInternas forcasInternas) {
-        return forcasInternas.getPontual().get();
-    }
-
-    public List<ForcaDistribuida> listarForcasDistribuida(ForcasInternas forcasInternas) {
-        return forcasInternas.getDistribuida().get();
-    }
-
-    public List<ForcaMomento> listarForcasMomento(ForcasInternas forcasInternas) {
-        return forcasInternas.getMomento().get();
     }
 
 }

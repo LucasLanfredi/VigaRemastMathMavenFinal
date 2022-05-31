@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faf06612-d716-4472-a392-8521c4630d7d" name="Changes" comment="Terminei ReacoesService.java e comecei o EsforcoCortanteService.java">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Secoes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Validator/ValidateValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Validator/ValidateValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcaMomento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcaMomento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasInternas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasInternas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Secoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Secoes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/EsforcoCortanteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/EsforcoCortanteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ForcasService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ForcasService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/PositionFindService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/PositionFindService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

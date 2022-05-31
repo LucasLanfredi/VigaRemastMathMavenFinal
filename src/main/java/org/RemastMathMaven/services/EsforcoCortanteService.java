@@ -18,9 +18,12 @@ public class EsforcoCortanteService extends ForcasService {
     }
 
     public void calculoDoEsforcoCortante(Viga viga) {
-        List<Forcas> positionsList = getAllListaForcas(viga.getForcasInternas());
-        int quantidadeDeSecoes = ((positionFindService.getAllPositionListWithoutDuplicateToSecoes(viga).size())/2);
-        List<Secoes> list = new ArrayList<Secoes>();
+        List<Forcas> positionsList = getAllListaForcas(viga);
+        int quantidadeDeSecoes = ((positionFindService.getAllPositionListWithoutDuplicateToSecoes(viga).size()));
+        List<Secoes> listOfSecoes = new ArrayList<>();
+        for(int i = 0; i<=quantidadeDeSecoes ; i++) {
+
+        }
 
     }
 

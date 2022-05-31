@@ -27,7 +27,7 @@ public class PositionFindService {
 
     public List<Integer> getAllPositionList(Viga viga) {
         return Stream.concat(getPositionOfApoioEmUmaLista(viga.getApoioInicial(), viga.getApoioFinal()).stream(),
-                setPositionOfForcasEmUmaLista(viga.getForcasInternas()).stream()).collect(Collectors.toList());
+                setPositionOfForcasEmUmaLista(viga).stream()).collect(Collectors.toList());
     }
 
     public List<Integer> getPositionOfApoioEmUmaLista(Apoios apoioInicial, Apoios apoioFinal){
@@ -37,10 +37,10 @@ public class PositionFindService {
         return list;
     }
 
-    public List<Integer> setPositionOfForcasEmUmaLista(ForcasInternas forcasInternas) {
-        List<ForcaPontual> listaForcasPontual = forcasService.listarForcasPontuais(forcasInternas);
-        List<ForcaMomento> listaForcasMomento = forcasService.listarForcasMomento(forcasInternas);
-        List<ForcaDistribuida> listaForcasDistribuida = forcasService.listarForcasDistribuida(forcasInternas);
+    public List<Integer> setPositionOfForcasEmUmaLista(Viga viga) {
+        List<ForcaPontual> listaForcasPontual = viga.listarForcasPontuais();
+        List<ForcaMomento> listaForcasMomento = viga.listarForcasMomento();
+        List<ForcaDistribuida> listaForcasDistribuida = viga.listarForcasDistribuida();
         List<Integer> list = new ArrayList<>();
 
         if (!listaForcasPontual.isEmpty()) {

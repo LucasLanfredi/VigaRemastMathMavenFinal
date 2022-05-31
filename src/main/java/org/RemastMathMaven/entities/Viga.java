@@ -70,4 +70,16 @@ public class Viga {
     public void setSecoesList(List<Secoes> secoesList) {
         this.secoesList = secoesList;
     }
+
+    public List<ForcaPontual> listarForcasPontuais() {
+        return this.forcasInternas.getPontual();
+    }
+
+    public List<ForcaDistribuida> listarForcasDistribuida() {
+        return this.forcasInternas.getDistribuida();
+    }
+
+    public List<ForcaMomento> listarForcasMomento() {
+        return this.forcasInternas.getMomento();
+    }
 }

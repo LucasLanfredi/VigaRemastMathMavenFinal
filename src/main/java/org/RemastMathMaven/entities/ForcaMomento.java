@@ -8,7 +8,7 @@ public class ForcaMomento {
     private int position;
     private int forcaRotacaoAplicada;
 
-    public ForcaMomento(int id, int userId, int position, int forcaAplicada) {
+    public ForcaMomento(int position, int forcaAplicada) {
         this.position = position;
         this.forcaRotacaoAplicada = forcaAplicada;
     }
