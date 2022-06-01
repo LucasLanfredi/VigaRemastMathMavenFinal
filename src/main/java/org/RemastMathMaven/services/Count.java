@@ -1,5 +1,6 @@
 package org.RemastMathMaven.services;
 
+import org.RemastMathMaven.entities.ExplicacaoExercise;
 import org.RemastMathMaven.entities.Viga;
 import org.RemastMathMaven.entities.VigaResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,10 @@ public class Count {
         this.reacoesService = reacoesService;
     }
 
-    public VigaResponseDTO countForcasDaViga(Viga viga) {
-        reacoesService.setApoioValues(viga);
-        esforcoCortanteService.calculoDoEsforcoCortante(viga);
-
-        VigaResponseDTO vigaResponseDTO = new VigaResponseDTO(viga);
-        return vigaResponseDTO;
+    public String countForcasDaViga(Viga viga, ExplicacaoExercise resposta ) {
+        reacoesService.setApoioValues(viga, resposta);
+        esforcoCortanteService.calculoDoEsforcoCortante(viga, resposta);
+        return resposta.getExplicacaoExercise();
     }
 
 }

@@ -46,12 +46,14 @@ public class CountController {
     private Forcas forcas;
 
     @GetMapping("/result")
-    public ResponseEntity<VigaResponseDTO> result(@RequestBody VigaDTO VigaDTO) {
+    public ResponseEntity<String> result(@RequestBody VigaDTO VigaDTO) {
         Viga viga = modelMapper.map(VigaDTO, Viga.class);
         validateValues.verficarVigaisValid(viga);
         validateValues.verificarForcasisValid(viga);
-        VigaResponseDTO dto = count.countForcasDaViga(viga);
 
-        return ResponseEntity.ok().body(dto);
+        ExplicacaoExercise resposta = new ExplicacaoExercise();
+        String respostaValue = count.countForcasDaViga(viga, resposta);
+
+        return ResponseEntity.ok().body(respostaValue);
     }
 }

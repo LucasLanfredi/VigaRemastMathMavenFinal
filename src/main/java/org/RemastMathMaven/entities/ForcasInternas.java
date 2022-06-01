@@ -55,10 +55,6 @@ public class ForcasInternas {
         this.momento.add(new ForcaMomento(referencePoint, sumForcasReacoes));
     }
 
-//    public void setValueOnForcasDistribuida(int referencePoint,int sumForcasReacoes){
-//        this.distribuida.add(new ForcaDistribuida(referencePoint, sumForcasReacoes));
-//    }
-
     public void setForcaDeReacao(int forcaPosition, int forcaVetor) {
         ForcaPontual forcaPontual = new ForcaPontual(forcaPosition, forcaVetor);
         this.pontual.add(forcaPontual);

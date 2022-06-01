@@ -8,13 +8,14 @@ import java.util.List;
 @Service
 public class ReacoesService extends ForcasService {
 
-    public void setApoioValues(Viga viga) {
+    public void setApoioValues(Viga viga, ExplicacaoExercise resposta) {
         int sumForcasPontuais = sumForcasPontuais(viga);
         int forcaDoApoioFinal = sumForcasMomentoParaDescobrirForcaNoApoio(viga, viga.getApoioInicial().getPosition(),
                 viga.getApoioFinal().getPosition());
         int forcaDoApoioInicial = forcaDoApoioInicial(forcaDoApoioFinal, sumForcasPontuais);
         viga.getApoioInicial().setForcaReacaoDoApoio(forcaDoApoioInicial);
         viga.getApoioFinal().setForcaReacaoDoApoio(forcaDoApoioFinal);
+
     }
 
     public int sumForcasPontuais(Viga viga) {

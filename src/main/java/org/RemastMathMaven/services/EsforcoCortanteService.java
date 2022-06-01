@@ -1,9 +1,6 @@
 package org.RemastMathMaven.services;
 
-import org.RemastMathMaven.entities.Fletor;
-import org.RemastMathMaven.entities.Forcas;
-import org.RemastMathMaven.entities.Secoes;
-import org.RemastMathMaven.entities.Viga;
+import org.RemastMathMaven.entities.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +21,8 @@ public class EsforcoCortanteService extends ForcasService {
         this.fletorService = fletorService;
     }
 
-    public void calculoDoEsforcoCortante(Viga viga) {
+    public void calculoDoEsforcoCortante(Viga viga, ExplicacaoExercise resposta) {
+        resposta.setCabecalhoEsforçoCortante();
         List<Integer> positionsList = positionFindService.getAllPositionListWithoutDuplicateToSecoes(viga);
         int quantidadeDeSecoes = ((positionFindService.getAllPositionListWithoutDuplicateToSecoes(viga).size()));
         List<Forcas> allForcas = forcasService.getAllListaForcasWithReacao(viga, List.of(viga.getApoioFinal(),viga.getApoioFinal()));
