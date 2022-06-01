@@ -14,7 +14,6 @@ public class SecoesService {
 
     public List<Secoes> criarUmaListaDeSecoesWithForcas(List<Forcas> forcas, List<Integer> pontosImportantes){
 
-        // Cria o inicio e fim de cada seção
         List<Secoes> secoesCortantes = new ArrayList<>();
         int[] positionY = {0, 0, 100};
         for (int i = 0; i < (pontosImportantes.size() - 1); i++) {
@@ -22,23 +21,23 @@ public class SecoesService {
             secoesCortantes.set(i, new Secoes(positionX, positionY));
         }
 
-        for (int i = 0; i <= secoesCortantes.size(); i++) { // Em cada seção
+        for (int i = 0; i <= secoesCortantes.size(); i++) {
             int xmax = secoesCortantes.get(i).findIndexOfPositionX(secoesCortantes.get(i).getPositionX().length - 1);
             int xmin = secoesCortantes.get(i).findIndexOfPositionX(0);
 
-            for (int j = 0; j < secoesCortantes.get(i).getPositionX().length; j++) { // Para cada valor de X
+            for (int j = 0; j < secoesCortantes.get(i).getPositionX().length; j++) {
                 int xatual = secoesCortantes.get(i).findIndexOfPositionX(j);
                 int vatual = 0;
 
-                for (int k = 0; k < forcas.size(); k++) { // Para cada carga
+                for (int k = 0; k < forcas.size(); k++) {
                     if (forcas.get(k).tipo == EnumForcaTipo.FORCA_PONTUAL ||
-                            forcas.get(k).tipo == EnumForcaTipo.FORCA_REACAO) { // Verifica se é força pontual
-                        if (forcas.get(k).getPosition() <= xatual && forcas.get(k).getPosition() != xmax) { // Verifica se está dentro da seção
+                            forcas.get(k).tipo == EnumForcaTipo.FORCA_REACAO) {
+                        if (forcas.get(k).getPosition() <= xatual && forcas.get(k).getPosition() != xmax) {
                             vatual -= forcas.get(k).getForcaAplicada();
                         }
                     }
 
-                    if (forcas.get(k).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) { // Verifica se é forca distribuida
+                    if (forcas.get(k).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
 
                         int wi = forcas.get(k).getForcaAplicada();
                         int wf = forcas.get(k).getForcaAplicadaFinal();
