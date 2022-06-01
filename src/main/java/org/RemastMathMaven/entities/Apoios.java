@@ -7,7 +7,7 @@ public class Apoios {
 
     private int position;
     private int typeApoio;
-    private int forcaDoApoio;
+    private int forcaReacaoDoApoio;
 
     public Apoios(int position, int typeApoio) {
         this.position = position;
@@ -30,11 +30,11 @@ public class Apoios {
         return typeApoio;
     }
 
-    public int getForcaDoApoio() {
-        return forcaDoApoio;
+    public int getForcaReacaoDoApoio() {
+        return forcaReacaoDoApoio;
     }
 
-    public void setForcaDoApoio(int forcaDoApoio) {
-        this.forcaDoApoio = forcaDoApoio;
+    public void setForcaReacaoDoApoio(int forcaReacaoDoApoio) {
+        this.forcaReacaoDoApoio = forcaReacaoDoApoio;
     }
 }

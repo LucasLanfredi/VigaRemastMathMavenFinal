@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 @Component
-public class Secoes {
+public class Fletor {
 
     int[] positionX;
     int[] positionY;
     List<Forcas> forcasDentroDaSecao;
 
-    public Secoes(int[] positionInit, int[] positionFinal) {
+    public Fletor(int[] positionInit, int[] positionFinal) {
         this.positionX = positionInit;
         this.positionY = positionFinal;
     }

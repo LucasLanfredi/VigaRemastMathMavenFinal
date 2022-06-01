@@ -7,6 +7,7 @@ import java.util.List;
 @Component
 public class Forcas {
 
+    public EnumForcaTipo tipo;
     private int position;
     private int positionFinal;
     private int forcaAplicada;
@@ -15,15 +16,17 @@ public class Forcas {
     public Forcas() {
     }
 
-    public Forcas(int position, int value) {
+    public Forcas(EnumForcaTipo tipo, int position, int value) {
+        this.tipo = tipo;
         this.position = position;
         this.forcaAplicada = value;
     }
 
-    public Forcas(int position, int positionFinal, int forcaAplicada, int forcaAplicadaFinal) {
-        this.position = position;
+    public Forcas(EnumForcaTipo tipo,int positionInitial, int positionFinal, int forcaAplicadaInicial, int forcaAplicadaFinal) {
+        this.tipo = tipo;
+        this.position = positionInitial;
         this.positionFinal = positionFinal;
-        this.forcaAplicada = forcaAplicada;
+        this.forcaAplicada = forcaAplicadaInicial;
         this.forcaAplicadaFinal = forcaAplicadaFinal;
     }
 
@@ -43,7 +46,40 @@ public class Forcas {
         this.forcaAplicada = forcaAplicada;
     }
 
+    public EnumForcaTipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(EnumForcaTipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getPositionFinal() {
+        return positionFinal;
+    }
+
+    public void setPositionFinal(int positionFinal) {
+        this.positionFinal = positionFinal;
+    }
+
+    public int getForcaAplicadaFinal() {
+        return forcaAplicadaFinal;
+    }
+
+    public void setForcaAplicadaFinal(int forcaAplicadaFinal) {
+        this.forcaAplicadaFinal = forcaAplicadaFinal;
+    }
+
+    public int getForcaResultanteForcaDistribuidaRetangular() {
+        return (forcaAplicada * Math.abs(positionFinal-position));
+    }
+
+
     public static List<Forcas> generateList() {
         return List.of(new Forcas());
+    }
+
+    public int getPositionMedia() {
+        return (Math.abs(positionFinal-position)/2);
     }
 }
