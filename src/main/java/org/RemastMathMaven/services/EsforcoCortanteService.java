@@ -26,14 +26,14 @@ public class EsforcoCortanteService extends ForcasService {
         List<Integer> positionsList = positionFindService.getAllPositionListWithoutDuplicateToSecoes(viga);
         List<Forcas> allForcas = forcasService.getAllListaForcasWithReacao(viga, List.of(viga.getApoioFinal(),viga.getApoioFinal()));
 
-        List<Secoes> listOfSecoes = secoesService.criarUmaListaDeSecoesWithForcas(allForcas , positionsList);
+        List<Cortante> listOfSecoes = secoesService.criarUmaListaDeSecoesWithForcas(allForcas , positionsList);
         List<Fletor> listOfFletor = fletorService.criarUmaListaDeSecoesWithForcas(allForcas , positionsList);
 
         criarRespostaWithValues(resposta, allForcas, listOfSecoes, listOfFletor, viga.getListOfApoios());
 
     }
 
-    private void criarRespostaWithValues(ExplicacaoExercise resposta,  List<Forcas> allForcas, List<Secoes> listOfSecoes,  List<Fletor> listOfFletor, List<Apoios> listApoios){
+    private void criarRespostaWithValues(ExplicacaoExercise resposta, List<Forcas> allForcas, List<Cortante> listOfSecoes, List<Fletor> listOfFletor, List<Apoios> listApoios){
         resposta.setExplicacaoReacoes(allForcas, listApoios);
         resposta.setResultadoEsforcoCortante(allForcas, listOfSecoes);
         resposta.setResultadoMomentoFletor(allForcas, listOfFletor );

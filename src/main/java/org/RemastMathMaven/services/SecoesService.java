@@ -1,9 +1,8 @@
 package org.RemastMathMaven.services;
 
 import org.RemastMathMaven.entities.EnumForcaTipo;
-import org.RemastMathMaven.entities.ExplicacaoExercise;
 import org.RemastMathMaven.entities.Forcas;
-import org.RemastMathMaven.entities.Secoes;
+import org.RemastMathMaven.entities.Cortante;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,21 +12,21 @@ import java.util.List;
 public class SecoesService {
 
 
-    public List<Secoes> criarUmaListaDeSecoesWithForcas(List<Forcas> forcas, List<Integer> pontosImportantes){
+    public List<Cortante> criarUmaListaDeSecoesWithForcas(List<Forcas> forcas, List<Integer> pontosImportantes){
 
-        List<Secoes> secoesCortantes = new ArrayList<>();
+        List<Cortante> cortanteCortantes = new ArrayList<>();
         int[] positionY = {0, 0, 100};
         for (int i = 0; i < (pontosImportantes.size() - 1); i++) {
             int[] positionX = {pontosImportantes.get(i), pontosImportantes.get(i+1), 100};
-            secoesCortantes.set(i, new Secoes(positionX, positionY));
+            cortanteCortantes.set(i, new Cortante(positionX, positionY));
         }
 
-        for (int i = 0; i <= secoesCortantes.size(); i++) {
-            int xmax = secoesCortantes.get(i).findIndexOfPositionX(secoesCortantes.get(i).getPositionX().length - 1);
-            int xmin = secoesCortantes.get(i).findIndexOfPositionX(0);
+        for (int i = 0; i <= cortanteCortantes.size(); i++) {
+            int xmax = cortanteCortantes.get(i).findIndexOfPositionX(cortanteCortantes.get(i).getPositionX().length - 1);
+            int xmin = cortanteCortantes.get(i).findIndexOfPositionX(0);
 
-            for (int j = 0; j < secoesCortantes.get(i).getPositionX().length; j++) {
-                int xatual = secoesCortantes.get(i).findIndexOfPositionX(j);
+            for (int j = 0; j < cortanteCortantes.get(i).getPositionX().length; j++) {
+                int xatual = cortanteCortantes.get(i).findIndexOfPositionX(j);
                 int vatual = 0;
 
                 for (int k = 0; k < forcas.size(); k++) {
@@ -59,9 +58,9 @@ public class SecoesService {
                         }
                     }
                 }
-                secoesCortantes.get(i).setValuseInsidePosition(j, vatual);
+                cortanteCortantes.get(i).setValuseInsidePosition(j, vatual);
             }
         }
-        return secoesCortantes;
+        return cortanteCortantes;
     }
 }

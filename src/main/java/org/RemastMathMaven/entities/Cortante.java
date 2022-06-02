@@ -1,15 +1,17 @@
-package org.RemastMathMaven.entitiesDTO;
+package org.RemastMathMaven.entities;
 
+import javax.persistence.Entity;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class SecoesDTO {
+@Entity
+public class Cortante {
 
     int[] positionX;
     int[] positionY;
-    List<ForcasDTO> forcasDentroDaSecao;
+    List<Forcas> forcasDentroDaSecao;
 
-    public SecoesDTO(int[] positionInit, int[] positionFinal) {
+    public Cortante(int[] positionInit, int[] positionFinal) {
         this.positionX = positionInit;
         this.positionY = positionFinal;
     }
@@ -44,11 +46,11 @@ public class SecoesDTO {
         this.positionY = positionY;
     }
 
-    public List<ForcasDTO> getForcasDentroDaSecao() {
+    public List<Forcas> getForcasDentroDaSecao() {
         return forcasDentroDaSecao;
     }
 
-    public void setForcasDentroDaSecao(List<ForcasDTO> forcasDentroDaSecao) {
+    public void setForcasDentroDaSecao(List<Forcas> forcasDentroDaSecao) {
         this.forcasDentroDaSecao = forcasDentroDaSecao;
     }
 

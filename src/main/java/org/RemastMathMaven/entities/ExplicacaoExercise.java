@@ -1,7 +1,5 @@
 package org.RemastMathMaven.entities;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
@@ -278,7 +276,7 @@ public class ExplicacaoExercise {
             this.explicacaoExercise = explicacaoExercise.toString();
     }
 
-    public void setResultadoEsforcoCortante(List<Forcas> forcas, List<Secoes> secoesCortantes) {
+    public void setResultadoEsforcoCortante(List<Forcas> forcas, List<Cortante> cortanteCortantes) {
         var omiteMais = true;
         StringBuilder explicacaoExercise = new StringBuilder();
         explicacaoExercise.append("<h1> Cálculo do Esforço Cortante </h1>");
@@ -294,9 +292,9 @@ public class ExplicacaoExercise {
             n++;
         }
 
-        for (int i = 0; i < secoesCortantes.size(); i++) {
-            var xinicial = secoesCortantes.get(i).findIndexOfPositionX(0);
-            var xfinal = secoesCortantes.get(i).findIndexOfPositionX(secoesCortantes.get(i).positionX.length - 1);
+        for (int i = 0; i < cortanteCortantes.size(); i++) {
+            var xinicial = cortanteCortantes.get(i).findIndexOfPositionX(0);
+            var xfinal = cortanteCortantes.get(i).findIndexOfPositionX(cortanteCortantes.get(i).positionX.length - 1);
             StringBuilder textoTemp = new StringBuilder();
             explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" $ ( ").append(xinicial).append(" \\leq x \\leq ").append(xfinal).append(" ) $</h2> ").append("Resolvendo o balanço de forças na seção").append(":  <canvas id='cortante-viga-").append(i + 1).append("' style='width: 100%'></canvas> $$");
 

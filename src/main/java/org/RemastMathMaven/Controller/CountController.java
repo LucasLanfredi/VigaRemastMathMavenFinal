@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("count")
+@RequestMapping("/count")
 @ResponseBody
 public class CountController {
 

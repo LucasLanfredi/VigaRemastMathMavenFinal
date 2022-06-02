@@ -9,7 +9,7 @@ public class VigaDTO {
     private ForcasInternasDTO forcasInternas;
     private ApoiosDTO apoioInicial;
     private ApoiosDTO apoioFinal;
-    private List<SecoesDTO> secoesList;
+    private List<CortanteDTO> secoesList;
 
     public VigaDTO(int tamanhodaViga, ForcasInternasDTO forcasInternas, ApoiosDTO opoioInicial, ApoiosDTO apoioFinal) {
         this.tamanhodaViga = tamanhodaViga;
@@ -50,11 +50,11 @@ public class VigaDTO {
         this.apoioFinal = apoioFinal;
     }
 
-    public List<SecoesDTO> getSecoesList() {
+    public List<CortanteDTO> getSecoesList() {
         return secoesList;
     }
 
-    public void setSecoesList(List<SecoesDTO> secoesList) {
+    public void setSecoesList(List<CortanteDTO> secoesList) {
         this.secoesList = secoesList;
     }
 }

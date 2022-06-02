@@ -1,19 +1,15 @@
-package org.RemastMathMaven.entities;
+package org.RemastMathMaven.entitiesDTO;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Entity;
 import java.util.List;
 import java.util.stream.IntStream;
 
-@Entity
-public class Secoes {
+public class CortanteDTO {
 
     int[] positionX;
     int[] positionY;
-    List<Forcas> forcasDentroDaSecao;
+    List<ForcasDTO> forcasDentroDaSecao;
 
-    public Secoes(int[] positionInit, int[] positionFinal) {
+    public CortanteDTO(int[] positionInit, int[] positionFinal) {
         this.positionX = positionInit;
         this.positionY = positionFinal;
     }
@@ -48,11 +44,11 @@ public class Secoes {
         this.positionY = positionY;
     }
 
-    public List<Forcas> getForcasDentroDaSecao() {
+    public List<ForcasDTO> getForcasDentroDaSecao() {
         return forcasDentroDaSecao;
     }
 
-    public void setForcasDentroDaSecao(List<Forcas> forcasDentroDaSecao) {
+    public void setForcasDentroDaSecao(List<ForcasDTO> forcasDentroDaSecao) {
         this.forcasDentroDaSecao = forcasDentroDaSecao;
     }
 
