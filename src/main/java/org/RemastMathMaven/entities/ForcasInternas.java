@@ -2,11 +2,12 @@ package org.RemastMathMaven.entities;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Entity
 public class ForcasInternas {
 
     private List<ForcaPontual> pontual;

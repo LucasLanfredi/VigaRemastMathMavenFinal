@@ -46,7 +46,6 @@ public class ResponseBuilder<E> {
 
     public ResponseBuilder<E> status(HttpStatus status) {
         message = status.getReasonPhrase();
-        success = !status.isError();
         return this;
     }
 

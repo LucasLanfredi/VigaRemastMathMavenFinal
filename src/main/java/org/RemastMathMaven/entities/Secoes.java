@@ -2,10 +2,11 @@ package org.RemastMathMaven.entities;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
 import java.util.List;
 import java.util.stream.IntStream;
 
-@Component
+@Entity
 public class Secoes {
 
     int[] positionX;

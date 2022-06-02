@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class FletorService {
 
-    public List<Fletor> criarUmaListaDeSecoesWithForcas(List<Forcas> allForcas, List<Integer> positionsList, ExplicacaoExercise resposta) {
+    public List<Fletor> criarUmaListaDeSecoesWithForcas(List<Forcas> allForcas, List<Integer> positionsList) {
         List<Fletor> secoesFletoras = new ArrayList<>();
         int[] positionY = {0, 0, 100};
         for (int i = 0; i < (positionsList.size() - 1); i++) {

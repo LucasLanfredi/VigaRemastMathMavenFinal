@@ -1,5 +1,6 @@
 package org.RemastMathMaven.Validator;
 
+import org.RemastMathMaven.entities.EnumForcaTipo;
 import org.RemastMathMaven.entities.Forcas;
 import org.RemastMathMaven.entities.Viga;
 import org.RemastMathMaven.services.ForcasService;
@@ -16,6 +17,7 @@ public class ValidateValues {
     private static final String POSICAO_FORCAS_INVALIDAS = "Você colocou valores invalidos na posição das forças";
     private static final String TAMANHO_DA_VIGA_INVALIDO_ZERO = "Tamanho da viga inválido, pois é 0";
     private static final String TAMANHO_DA_VIGA_INVALIDO_NEGATIVO = "Tamanho da viga inválido, pois está negativo";
+    private static final String TAMANHO_DA_CARGA_DISTRIBUIDA_INVERTIDO = " - Posição final da carga distribuida e maior que a posição inicial\n";
 
     @Autowired
     private ForcasService forcasService;
@@ -43,7 +45,11 @@ public class ValidateValues {
 
         for (Forcas forca : listaForcas) {
             if (forca.getPosition() <= 0 & vigaTamanho < forca.getPosition()) {
-                ResponseEntity.badRequest().body(POSICAO_FORCAS_INVALIDAS);
+            }
+            if (forca.tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
+                if (forca.getPositionFinal() <= forca.getPosition()) {
+                    ResponseEntity.badRequest().body(TAMANHO_DA_CARGA_DISTRIBUIDA_INVERTIDO);
+                }
             }
         }
     }

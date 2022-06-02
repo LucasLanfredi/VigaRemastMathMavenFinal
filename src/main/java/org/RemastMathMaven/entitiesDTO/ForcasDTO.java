@@ -1,12 +1,9 @@
-package org.RemastMathMaven.entities;
+package org.RemastMathMaven.entitiesDTO;
 
-import org.springframework.stereotype.Component;
+import org.RemastMathMaven.entities.EnumForcaTipo;
 
-import javax.persistence.Entity;
 import java.util.List;
-
-@Entity
-public class Forcas {
+public class ForcasDTO {
 
     public EnumForcaTipo tipo;
     private int position;
@@ -14,16 +11,16 @@ public class Forcas {
     private int forcaAplicada;
     private int forcaAplicadaFinal;
 
-    public Forcas() {
+    public ForcasDTO() {
     }
 
-    public Forcas(EnumForcaTipo tipo, int position, int value) {
+    public ForcasDTO(EnumForcaTipo tipo, int position, int value) {
         this.tipo = tipo;
         this.position = position;
         this.forcaAplicada = value;
     }
 
-    public Forcas(EnumForcaTipo tipo,int positionInitial, int positionFinal, int forcaAplicadaInicial, int forcaAplicadaFinal) {
+    public ForcasDTO(EnumForcaTipo tipo, int positionInitial, int positionFinal, int forcaAplicadaInicial, int forcaAplicadaFinal) {
         this.tipo = tipo;
         this.position = positionInitial;
         this.positionFinal = positionFinal;
@@ -76,8 +73,8 @@ public class Forcas {
     }
 
 
-    public static List<Forcas> generateList() {
-        return List.of(new Forcas());
+    public static List<ForcasDTO> generateList() {
+        return List.of(new ForcasDTO());
     }
 
     public int getPositionMedia() {

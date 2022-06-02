@@ -1,17 +1,12 @@
-package org.RemastMathMaven.entities;
+package org.RemastMathMaven.entitiesDTO;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Entity;
-
-@Entity
-public class Apoios {
+public class ApoiosDTO {
 
     private int position;
     private int typeApoio;
     private int forcaReacaoDoApoio;
 
-    public Apoios(int position, int typeApoio) {
+    public ApoiosDTO(int position, int typeApoio) {
         this.position = position;
         this.typeApoio = typeApoio;
     }

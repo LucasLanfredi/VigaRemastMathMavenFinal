@@ -13,7 +13,7 @@ import java.util.List;
 public class SecoesService {
 
 
-    public List<Secoes> criarUmaListaDeSecoesWithForcas(List<Forcas> forcas, List<Integer> pontosImportantes, ExplicacaoExercise resposta){
+    public List<Secoes> criarUmaListaDeSecoesWithForcas(List<Forcas> forcas, List<Integer> pontosImportantes){
 
         List<Secoes> secoesCortantes = new ArrayList<>();
         int[] positionY = {0, 0, 100};

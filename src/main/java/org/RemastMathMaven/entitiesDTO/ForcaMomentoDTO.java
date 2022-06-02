@@ -1,16 +1,11 @@
-package org.RemastMathMaven.entities;
+package org.RemastMathMaven.entitiesDTO;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Entity;
-
-@Entity
-public class ForcaMomento {
+public class ForcaMomentoDTO {
 
     private int position;
     private int forcaRotacaoAplicada;
 
-    public ForcaMomento(int position, int forcaAplicada) {
+    public ForcaMomentoDTO(int position, int forcaAplicada) {
         this.position = position;
         this.forcaRotacaoAplicada = forcaAplicada;
     }

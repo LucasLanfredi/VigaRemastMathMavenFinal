@@ -1,11 +1,6 @@
-package org.RemastMathMaven.entities;
+package org.RemastMathMaven.entitiesDTO;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Entity;
-
-@Entity
-public class ForcaDistribuida {
+public class ForcaDistribuidaDTO {
 
     private int positionEquivalente;
     private int forcaResultante;
@@ -15,7 +10,7 @@ public class ForcaDistribuida {
     private int forcaAplicadaInit;
     private int forcaAplicadaEnd;
 
-    public ForcaDistribuida(int positionInit, int positionEnd, int forcaAplicadaInit, int forcaAplicadaEnd) {
+    public ForcaDistribuidaDTO(int positionInit, int positionEnd, int forcaAplicadaInit, int forcaAplicadaEnd) {
         this.positionInit = positionInit;
         this.positionEnd = positionEnd;
         this.forcaAplicadaInit = forcaAplicadaInit;

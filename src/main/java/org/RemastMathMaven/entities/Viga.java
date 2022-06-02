@@ -1,13 +1,13 @@
 package org.RemastMathMaven.entities;
 
-import org.springframework.stereotype.Component;
 
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.Entity;
 import java.util.List;
-
-@Component
+@Entity
 public class Viga {
 
-    private Long IdViga;
     private int tamanhodaViga;
 
     private ForcasInternas forcasInternas;
@@ -15,20 +15,11 @@ public class Viga {
     private Apoios apoioFinal;
     private List<Secoes> secoesList;
 
-    public Viga(Long idViga, int tamanhodaViga, ForcasInternas forcasInternas, Apoios opoioInicial, Apoios apoioFinal) {
-        IdViga = idViga;
+    public Viga(int tamanhodaViga, ForcasInternas forcasInternas, Apoios opoioInicial, Apoios apoioFinal) {
         this.tamanhodaViga = tamanhodaViga;
         this.forcasInternas = forcasInternas;
         this.apoioInicial = opoioInicial;
         this.apoioFinal = apoioFinal;
-    }
-
-    public Long getIdViga() {
-        return IdViga;
-    }
-
-    public void setIdViga(Long idViga) {
-        IdViga = idViga;
     }
 
     public int getTamanhodaViga() {
@@ -61,6 +52,10 @@ public class Viga {
 
     public void setApoioFinal(Apoios apoioFinal) {
         this.apoioFinal = apoioFinal;
+    }
+
+    public List<Apoios> getListOfApoios(){
+        return List.of(this.apoioInicial,this.apoioFinal);
     }
 
     public List<Secoes> getSecoesList() {
