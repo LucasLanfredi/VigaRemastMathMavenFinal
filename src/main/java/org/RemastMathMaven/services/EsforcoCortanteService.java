@@ -22,14 +22,15 @@ public class EsforcoCortanteService extends ForcasService {
     }
 
     public void calculoDoEsforcoCortante(Viga viga, ExplicacaoExercise resposta) {
-        resposta.setCabecalhoEsforçoCortante();
+
         List<Integer> positionsList = positionFindService.getAllPositionListWithoutDuplicateToSecoes(viga);
         int quantidadeDeSecoes = ((positionFindService.getAllPositionListWithoutDuplicateToSecoes(viga).size()));
         List<Forcas> allForcas = forcasService.getAllListaForcasWithReacao(viga, List.of(viga.getApoioFinal(),viga.getApoioFinal()));
 
-        List<Secoes> listOfSecoes = secoesService.criarUmaListaDeSecoesWithForcas(allForcas , positionsList);
-        List<Fletor> listOfFletor = fletorService.criarUmaListaDeSecoesWithForcas(allForcas , positionsList);
+        List<Secoes> listOfSecoes = secoesService.criarUmaListaDeSecoesWithForcas(allForcas , positionsList, resposta);
+        List<Fletor> listOfFletor = fletorService.criarUmaListaDeSecoesWithForcas(allForcas , positionsList, resposta);
 
+        resposta.setResultadoEsforcoCortante(allForcas, listOfSecoes);
 
     }
 

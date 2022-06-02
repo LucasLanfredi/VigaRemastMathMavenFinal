@@ -1,6 +1,7 @@
 package org.RemastMathMaven.services;
 
 import org.RemastMathMaven.entities.EnumForcaTipo;
+import org.RemastMathMaven.entities.ExplicacaoExercise;
 import org.RemastMathMaven.entities.Forcas;
 import org.RemastMathMaven.entities.Secoes;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
 public class SecoesService {
 
 
-    public List<Secoes> criarUmaListaDeSecoesWithForcas(List<Forcas> forcas, List<Integer> pontosImportantes){
+    public List<Secoes> criarUmaListaDeSecoesWithForcas(List<Forcas> forcas, List<Integer> pontosImportantes, ExplicacaoExercise resposta){
 
         List<Secoes> secoesCortantes = new ArrayList<>();
         int[] positionY = {0, 0, 100};

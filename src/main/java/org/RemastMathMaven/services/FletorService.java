@@ -1,6 +1,7 @@
 package org.RemastMathMaven.services;
 
 import org.RemastMathMaven.entities.EnumForcaTipo;
+import org.RemastMathMaven.entities.ExplicacaoExercise;
 import org.RemastMathMaven.entities.Fletor;
 import org.RemastMathMaven.entities.Forcas;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import java.util.List;
 @Service
 public class FletorService {
 
-    public List<Fletor> criarUmaListaDeSecoesWithForcas(List<Forcas> allForcas, List<Integer> positionsList) {
+    public List<Fletor> criarUmaListaDeSecoesWithForcas(List<Forcas> allForcas, List<Integer> positionsList, ExplicacaoExercise resposta) {
         List<Fletor> secoesFletoras = new ArrayList<>();
         int[] positionY = {0, 0, 100};
         for (int i = 0; i < (positionsList.size() - 1); i++) {
@@ -67,6 +68,7 @@ public class FletorService {
                 secoesFletoras.get(i).setValuseInsidePosition(j,matual);
             }
         }
+
         return secoesFletoras;
     }
 
