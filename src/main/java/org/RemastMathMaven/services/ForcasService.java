@@ -22,7 +22,7 @@ public class ForcasService {
         }
         if (!listaForcasDistribuida.isEmpty()) {
             for (ForcaDistribuida forcaDistribuida : listaForcasDistribuida) {
-                Forcas forca = new Forcas(EnumForcaTipo.FORCA_DISTRIBUIDA,forcaDistribuida.getPositionInit(), forcaDistribuida.getPositionEnd(), forcaDistribuida.getForcaAplicadaInit(),
+                Forcas forca = new Forcas(EnumForcaTipo.FORCA_DISTRIBUIDA,forcaDistribuida.getPositionEquivalente(),forcaDistribuida.getForcaResultante(),forcaDistribuida.getPositionInit(), forcaDistribuida.getPositionEnd(), forcaDistribuida.getForcaAplicadaInit(),
                         forcaDistribuida.getForcaAplicadaEnd());
                 listaDeForcas.add(forca);
             }
@@ -51,7 +51,7 @@ public class ForcasService {
         }
         if (!listaForcasDistribuida.isEmpty()) {
             for (ForcaDistribuida forcaDistribuida : listaForcasDistribuida) {
-                Forcas forca = new Forcas(EnumForcaTipo.FORCA_DISTRIBUIDA,forcaDistribuida.getPositionInit(), forcaDistribuida.getPositionEnd(), forcaDistribuida.getForcaAplicadaInit(),
+                Forcas forca = new Forcas(EnumForcaTipo.FORCA_DISTRIBUIDA,forcaDistribuida.getPositionEquivalente(),forcaDistribuida.getForcaResultante(),forcaDistribuida.getPositionInit(), forcaDistribuida.getPositionEnd(), forcaDistribuida.getForcaAplicadaInit(),
                         forcaDistribuida.getForcaAplicadaEnd());
                 listaDeForcas.add(forca);
             }

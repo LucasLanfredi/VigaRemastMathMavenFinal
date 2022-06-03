@@ -1,5 +1,8 @@
 package org.RemastMathMaven.entitiesDTO;
 
+import javax.persistence.Entity;
+
+@Entity
 public class ForcaDistribuidaDTO {
 
     private int positionEquivalente;
@@ -10,7 +13,9 @@ public class ForcaDistribuidaDTO {
     private int forcaAplicadaInit;
     private int forcaAplicadaEnd;
 
-    public ForcaDistribuidaDTO(int positionInit, int positionEnd, int forcaAplicadaInit, int forcaAplicadaEnd) {
+    public ForcaDistribuidaDTO(int positionEquivalente, int forcaResultante, int positionInit, int positionEnd, int forcaAplicadaInit, int forcaAplicadaEnd) {
+        this.positionEquivalente = positionEquivalente;
+        this.forcaResultante = forcaResultante;
         this.positionInit = positionInit;
         this.positionEnd = positionEnd;
         this.forcaAplicadaInit = forcaAplicadaInit;

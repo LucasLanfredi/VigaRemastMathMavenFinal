@@ -1,7 +1,5 @@
 package org.RemastMathMaven.entities;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.Entity;
 import java.util.List;
 
@@ -14,6 +12,9 @@ public class Forcas {
     private int forcaAplicada;
     private int forcaAplicadaFinal;
 
+    private int positionEquivalente;
+    private int forcaResultante;
+
     public Forcas() {
     }
 
@@ -23,8 +24,10 @@ public class Forcas {
         this.forcaAplicada = value;
     }
 
-    public Forcas(EnumForcaTipo tipo,int positionInitial, int positionFinal, int forcaAplicadaInicial, int forcaAplicadaFinal) {
+    public Forcas(EnumForcaTipo tipo,int positionEquivalente, int forcaResultante, int positionInitial, int positionFinal, int forcaAplicadaInicial, int forcaAplicadaFinal) {
         this.tipo = tipo;
+        this.positionEquivalente = positionEquivalente;
+        this.forcaResultante = forcaResultante;
         this.position = positionInitial;
         this.positionFinal = positionFinal;
         this.forcaAplicada = forcaAplicadaInicial;
@@ -71,8 +74,8 @@ public class Forcas {
         this.forcaAplicadaFinal = forcaAplicadaFinal;
     }
 
-    public int getForcaResultanteForcaDistribuidaRetangular() {
-        return (forcaAplicada * Math.abs(positionFinal-position));
+    public int getForcaResultante() {
+        return forcaResultante;
     }
 
 
@@ -81,6 +84,6 @@ public class Forcas {
     }
 
     public int getPositionMedia() {
-        return (Math.abs(positionFinal-position)/2);
+        return positionEquivalente;
     }
 }

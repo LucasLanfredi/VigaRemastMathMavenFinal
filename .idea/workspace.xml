@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a58bd14a-cdeb-48ba-a67a-5997ec72e19e" name="Changes" comment="Terminando metodos de entidades, e criando as entidades que vem do front. Alem de arrumar algumas configuracoes do Spring">
+    <list default="true" id="a58bd14a-cdeb-48ba-a67a-5997ec72e19e" name="Changes" comment="atualizando back">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Controller/CountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Controller/CountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Validator/ValidateValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Validator/ValidateValues.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ExplicacaoExercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ExplicacaoExercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Secoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Cortante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcaDistribuida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcaDistribuida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Forcas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Forcas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasInternas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasInternas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/SecoesDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/CortanteDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/VigaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/VigaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/EsforcoCortanteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/EsforcoCortanteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/FletorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/FletorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ForcasService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ForcasService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/SecoesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/SecoesService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654206609409</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="atualizando back">
+      <created>1654210009851</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654210009851</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +153,7 @@
     <MESSAGE value="Commit" />
     <MESSAGE value="Terminei ReacoesService.java e comecei o EsforcoCortanteService.java" />
     <MESSAGE value="Terminando metodos de entidades, e criando as entidades que vem do front. Alem de arrumar algumas configuracoes do Spring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Terminando metodos de entidades, e criando as entidades que vem do front. Alem de arrumar algumas configuracoes do Spring" />
+    <MESSAGE value="atualizando back" />
+    <option name="LAST_COMMIT_MESSAGE" value="atualizando back" />
   </component>
 </project>

@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class ReacoesService extends ForcasService {
 
-    public void setApoioValues(Viga viga, ExplicacaoExercise resposta) {
+    public void setApoioValues(Viga viga, ExplicacaoExerciseService resposta) {
         int sumForcasPontuais = sumForcasPontuais(viga);
         int forcaDoApoioFinal = sumForcasMomentoParaDescobrirForcaNoApoio(viga, viga.getApoioInicial().getPosition(),
                 viga.getApoioFinal().getPosition());

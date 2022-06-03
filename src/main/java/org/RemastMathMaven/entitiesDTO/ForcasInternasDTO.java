@@ -1,56 +1,62 @@
 package org.RemastMathMaven.entitiesDTO;
 
+import org.RemastMathMaven.entities.ForcaDistribuida;
+import org.RemastMathMaven.entities.ForcaMomento;
+import org.RemastMathMaven.entities.ForcaPontual;
+
+import javax.persistence.Entity;
 import java.util.List;
+
+@Entity
 public class ForcasInternasDTO {
+    private List<ForcaPontual> listaForcasPontual;
+    private List<ForcaDistribuida> listaForcasDistribuida;
+    private List<ForcaMomento> listaForcasMomento;
 
-    private List<ForcaPontualDTO> pontual;
-    private List<ForcaDistribuidaDTO> distribuida;
-    private List<ForcaMomentoDTO> momento;
-
-    public ForcasInternasDTO(List<ForcaPontualDTO> pontual, List<ForcaDistribuidaDTO> distribuida, List<ForcaMomentoDTO> momento) {
-        this.pontual = pontual;
-        this.distribuida = distribuida;
-        this.momento = momento;
+    public ForcasInternasDTO(List<ForcaPontual> listaForcaPontual, List<ForcaDistribuida> distribuida, List<ForcaMomento> momento) {
+        this.listaForcasPontual = listaForcaPontual;
+        this.listaForcasDistribuida = distribuida;
+        this.listaForcasMomento = momento;
     }
 
-    public ForcasInternasDTO(List<ForcaPontualDTO> pontual) {
-        this.pontual = pontual;
+    public ForcasInternasDTO(List<ForcaPontual> listaForcaPontual) {
+        this.listaForcasPontual = listaForcaPontual;
     }
 
-    public List<ForcaPontualDTO> getPontual() {
-        return pontual;
+    public List<ForcaPontual> getListaForcasPontual() {
+        return listaForcasPontual;
     }
 
-    public void setPontual(List<ForcaPontualDTO> pontual) {
-        this.pontual = pontual;
+    public void setListaForcasPontual(List<ForcaPontual> listaForcasPontual) {
+        this.listaForcasPontual = listaForcasPontual;
     }
 
-    public List<ForcaDistribuidaDTO> getDistribuida() {
-        return distribuida;
+    public List<ForcaDistribuida> getListaForcasDistribuida() {
+        return listaForcasDistribuida;
     }
 
-    public void setDistribuida(List<ForcaDistribuidaDTO> distribuida) {
-        this.distribuida = distribuida;
+    public void setListaForcasDistribuida(List<ForcaDistribuida> listaForcasDistribuida) {
+        this.listaForcasDistribuida = listaForcasDistribuida;
     }
 
-    public List<ForcaMomentoDTO> getMomento() {
-        return momento;
+    public List<ForcaMomento> getListaForcasMomento() {
+        return listaForcasMomento;
     }
 
-    public void setMomento(List<ForcaMomentoDTO> momento) {
-        this.momento = momento;
+    public void setListaForcasMomento(List<ForcaMomento> listaForcasMomento) {
+        this.listaForcasMomento = listaForcasMomento;
     }
 
     public void setValueOnForcasPontual(int referencePoint,int sumForcasReacoes){
-        this.pontual.add(new ForcaPontualDTO(referencePoint, sumForcasReacoes));
+        this.listaForcasPontual.add(new ForcaPontual(referencePoint, sumForcasReacoes));
     }
 
     public void setValueOnForcasMomento(int referencePoint,int sumForcasReacoes){
-        this.momento.add(new ForcaMomentoDTO(referencePoint, sumForcasReacoes));
+        this.listaForcasMomento.add(new ForcaMomento(referencePoint, sumForcasReacoes));
     }
 
     public void setForcaDeReacao(int forcaPosition, int forcaVetor) {
-        ForcaPontualDTO forcaPontual = new ForcaPontualDTO(forcaPosition, forcaVetor);
-        this.pontual.add(forcaPontual);
+        ForcaPontual forcaPontual = new ForcaPontual(forcaPosition, forcaVetor);
+        this.listaForcasPontual.add(forcaPontual);
     }
 }

@@ -15,7 +15,9 @@ public class ForcaDistribuida {
     private int forcaAplicadaInit;
     private int forcaAplicadaEnd;
 
-    public ForcaDistribuida(int positionInit, int positionEnd, int forcaAplicadaInit, int forcaAplicadaEnd) {
+    public ForcaDistribuida(int positionEquivalente,int forcaResultante, int positionInit, int positionEnd, int forcaAplicadaInit, int forcaAplicadaEnd) {
+        this.positionEquivalente = positionEquivalente;
+        this.forcaResultante = forcaResultante;
         this.positionInit = positionInit;
         this.positionEnd = positionEnd;
         this.forcaAplicadaInit = forcaAplicadaInit;

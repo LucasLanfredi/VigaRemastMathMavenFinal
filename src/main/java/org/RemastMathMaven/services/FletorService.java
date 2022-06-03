@@ -1,7 +1,6 @@
 package org.RemastMathMaven.services;
 
 import org.RemastMathMaven.entities.EnumForcaTipo;
-import org.RemastMathMaven.entities.ExplicacaoExercise;
 import org.RemastMathMaven.entities.Fletor;
 import org.RemastMathMaven.entities.Forcas;
 import org.springframework.stereotype.Service;
@@ -54,7 +53,7 @@ public class FletorService {
                         }
 
                         if (xatual >= xf) {
-                            matual -= allForcas.get(k).getForcaResultanteForcaDistribuidaRetangular() * (xatual - allForcas.get(k).getPositionMedia());
+                            matual -= allForcas.get(k).getForcaResultante() * (xatual - allForcas.get(k).getPositionMedia());
                         }
                     }
 

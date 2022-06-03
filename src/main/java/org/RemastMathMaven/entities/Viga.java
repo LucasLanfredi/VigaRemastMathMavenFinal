@@ -56,14 +56,14 @@ public class Viga {
     }
 
     public List<ForcaPontual> listarForcasPontuais() {
-        return this.forcasInternas.getPontual();
+        return this.forcasInternas.getListaForcasPontual();
     }
 
     public List<ForcaDistribuida> listarForcasDistribuida() {
-        return this.forcasInternas.getDistribuida();
+        return this.forcasInternas.getListaForcasDistribuida();
     }
 
     public List<ForcaMomento> listarForcasMomento() {
-        return this.forcasInternas.getMomento();
+        return this.forcasInternas.getListaForcasMomento();
     }
 }

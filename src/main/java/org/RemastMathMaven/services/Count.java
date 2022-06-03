@@ -4,8 +4,6 @@ import org.RemastMathMaven.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class Count {
 
@@ -20,7 +18,7 @@ public class Count {
         this.reacoesService = reacoesService;
     }
 
-    public String countForcasDaViga(Viga viga, ExplicacaoExercise resposta ) {
+    public String countForcasDaViga(Viga viga, ExplicacaoExerciseService resposta ) {
         reacoesService.setApoioValues(viga, resposta);
         esforcoCortanteService.calculoDoEsforcoCortante(viga, resposta);
         return resposta.getExplicacaoExercise();

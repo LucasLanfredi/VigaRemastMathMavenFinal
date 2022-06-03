@@ -1,17 +1,21 @@
 package org.RemastMathMaven.entitiesDTO;
 
+
+import org.RemastMathMaven.entities.*;
+
+import javax.persistence.Entity;
 import java.util.List;
 
+@Entity
 public class VigaDTO {
 
     private int tamanhodaViga;
 
-    private ForcasInternasDTO forcasInternas;
-    private ApoiosDTO apoioInicial;
-    private ApoiosDTO apoioFinal;
-    private List<CortanteDTO> secoesList;
+    private ForcasInternas forcasInternas;
+    private Apoios apoioInicial;
+    private Apoios apoioFinal;
 
-    public VigaDTO(int tamanhodaViga, ForcasInternasDTO forcasInternas, ApoiosDTO opoioInicial, ApoiosDTO apoioFinal) {
+    public VigaDTO(int tamanhodaViga, ForcasInternas forcasInternas, Apoios opoioInicial, Apoios apoioFinal) {
         this.tamanhodaViga = tamanhodaViga;
         this.forcasInternas = forcasInternas;
         this.apoioInicial = opoioInicial;
@@ -26,36 +30,43 @@ public class VigaDTO {
         this.tamanhodaViga = tamanhodaViga;
     }
 
-    public ForcasInternasDTO getForcasInternas() {
+    public ForcasInternas getForcasInternas() {
         return forcasInternas;
     }
 
-    public void setForcasInternas(ForcasInternasDTO forcasInternas) {
+    public void setForcasInternas(ForcasInternas forcasInternas) {
         this.forcasInternas = forcasInternas;
     }
 
-    public ApoiosDTO getApoioInicial() {
+    public Apoios getApoioInicial() {
         return apoioInicial;
     }
 
-    public void setApoioInicial(ApoiosDTO apoioInicial) {
+    public void setApoioInicial(Apoios apoioInicial) {
         this.apoioInicial = apoioInicial;
     }
 
-    public ApoiosDTO getApoioFinal() {
+    public Apoios getApoioFinal() {
         return apoioFinal;
     }
 
-    public void setApoioFinal(ApoiosDTO apoioFinal) {
+    public void setApoioFinal(Apoios apoioFinal) {
         this.apoioFinal = apoioFinal;
     }
 
-    public List<CortanteDTO> getSecoesList() {
-        return secoesList;
+    public List<Apoios> getListOfApoios(){
+        return List.of(this.apoioInicial,this.apoioFinal);
     }
 
-    public void setSecoesList(List<CortanteDTO> secoesList) {
-        this.secoesList = secoesList;
+    public List<ForcaPontual> listarForcasPontuais() {
+        return this.forcasInternas.getListaForcasPontual();
+    }
+
+    public List<ForcaDistribuida> listarForcasDistribuida() {
+        return this.forcasInternas.getListaForcasDistribuida();
+    }
+
+    public List<ForcaMomento> listarForcasMomento() {
+        return this.forcasInternas.getListaForcasMomento();
     }
 }
-

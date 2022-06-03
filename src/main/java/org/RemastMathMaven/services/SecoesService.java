@@ -54,7 +54,7 @@ public class SecoesService {
                         }
 
                         if (xatual >= xf) {
-                            vatual -= forcas.get(k).getForcaResultanteForcaDistribuidaRetangular();
+                            vatual -= forcas.get(k).getForcaResultante();
                         }
                     }
                 }

@@ -6,7 +6,6 @@ import org.RemastMathMaven.entitiesDTO.VigaDTO;
 import org.RemastMathMaven.services.Count;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +30,7 @@ public class CountController {
         validateValues.verficarVigaisValid(viga);
         validateValues.verificarForcasisValid(viga);
 
-        final ExplicacaoExercise resposta = new ExplicacaoExercise();
+        final ExplicacaoExerciseService resposta = new ExplicacaoExerciseService();
         final String respostaValue = count.countForcasDaViga(viga, resposta);
 
         return ResponseEntity.ok().body(respostaValue);
