@@ -297,8 +297,8 @@ public class ExplicacaoExerciseService {
             var xinicial = cortanteCortantes.get(i).getPositionX()[0];
             var xfinal = cortanteCortantes.get(i).getPositionX()[cortanteCortantes.get(i).getPositionX().length - 1];
             StringBuilder textoTemp = new StringBuilder();
-            explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" $ ( ").append(xinicial).append(" \\leq x \\leq ").append(xfinal).append(" ) $</h2> ").append("Resolvendo o balanço de forças na seção:");
-            //TODO
+            explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append("  ( ").append(xinicial).append(" &#8804 x &#8804 ").append(xfinal).append(" ) </h2> ").append("Resolvendo o balanço de forças na seção $$");
+
             for (int j = 0; j < forcas.size(); j++) {
                 if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
                         (forcas.get(j).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA && forcas.get(j).getPosition() < xfinal) ||
