@@ -31,8 +31,13 @@ public class FletorService {
 
                 for (int k = 0; k < allForcas.size(); k++) { // Para cada carga
 
-                    if (allForcas.get(k).tipo == EnumForcaTipo.FORCA_PONTUAL ||
-                            allForcas.get(k).tipo == EnumForcaTipo.FORCA_REACAO) { // Verifica se é força pontual
+                    if (allForcas.get(k).tipo == EnumForcaTipo.FORCA_PONTUAL) { // Verifica se é força pontual
+                        if (allForcas.get(k).getPosition() < xatual) { // Verifica se está dentro da seção
+                            matual += allForcas.get(k).getForcaAplicada() * (xatual - allForcas.get(k).getPosition());
+                        }
+                    }
+
+                    if ( allForcas.get(k).tipo == EnumForcaTipo.FORCA_REACAO) { // Verifica se é força pontual
                         if (allForcas.get(k).getPosition() < xatual) { // Verifica se está dentro da seção
                             matual -= allForcas.get(k).getForcaAplicada() * (xatual - allForcas.get(k).getPosition());
                         }

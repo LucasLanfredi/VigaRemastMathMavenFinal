@@ -302,7 +302,7 @@ public class ExplicacaoExerciseService {
             for (int j = 0; j < forcas.size(); j++) {
                 if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
                         (forcas.get(j).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA && forcas.get(j).getPosition() < xfinal) ||
-                        (forcas.get(j).tipo == EnumForcaTipo.FORCA_REACAO && forcas.get(j).getPositionFinal() < xfinal)) {
+                        (forcas.get(j).tipo == EnumForcaTipo.FORCA_REACAO && forcas.get(j).getPosition() < xfinal)) {
                     switch (forcas.get(j).tipo) {
                         case FORCA_PONTUAL:
                             if (omiteMais) {
@@ -376,6 +376,8 @@ public class ExplicacaoExerciseService {
                         (forca.tipo == EnumForcaTipo.FORCA_REACAO && forca.getPosition() < xfinal)) {
                     switch (forca.tipo) {
                         case FORCA_PONTUAL:
+                            somaTemp += forca.getForcaAplicada();
+                            break;
                         case FORCA_REACAO:
                             somaTemp -= forca.getForcaAplicada();
                             break;
@@ -572,9 +574,11 @@ public class ExplicacaoExerciseService {
                                 (forcas.get(j).tipo == EnumForcaTipo.FORCA_MOMENTO && forcas.get(j).getPosition() < xfinal)) {
                             switch (forcas.get(j).tipo) {
                                 case FORCA_PONTUAL:
-                                case FORCA_REACAO:
                                     somaTemp += forcas.get(j).getForcaAplicada() * forcas.get(j).getPosition();
                                     somaTempx -= forcas.get(j).getForcaAplicada();
+                                    break;
+                                case FORCA_REACAO:
+                                    somaTemp -= forcas.get(j).getForcaAplicada();
                                     break;
                                 case FORCA_DISTRIBUIDA:
                                     var wi = forcas.get(j).getForcaAplicada();
@@ -628,16 +632,16 @@ public class ExplicacaoExerciseService {
                         }
                         if (somaTemp > 0) {
                             if (omiteMais && somaTempx == 0 && somaTempxx == 0 && somaTempxxx == 0) {
-                                explicacaoExercise.append(somaTemp);
+                                explicacaoExercise.append(-somaTemp);
                                 omiteMais = false;
                             } else {
                                 explicacaoExercise.append("+").append(somaTemp);
                             }
                         } else if (somaTempx == 0 && somaTempxx == 0 && somaTempxxx == 0) {
-                            explicacaoExercise.append(somaTemp);
+                            explicacaoExercise.append((-somaTemp));
                         }
                         if (somaTemp < 0) {
-                            explicacaoExercise.append(somaTemp);
+                            explicacaoExercise.append(-somaTemp);
                         }
 
                         omiteMais = true;
