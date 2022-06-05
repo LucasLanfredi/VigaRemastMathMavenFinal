@@ -439,7 +439,7 @@ public class ExplicacaoExerciseService {
 
         }
 
-        explicacaoExercise.append("<h2>  + tt(Gráfico) +  </h2> <div id='grafico-cortante' class='grafico'> </div>");
+        explicacaoExercise.append("<h2>  Gráfico  </h2> <div id='grafico-cortante' class='grafico'> </div>");
 
         this.explicacaoExercise += explicacaoExercise.toString();
     }
@@ -553,18 +553,20 @@ public class ExplicacaoExerciseService {
                             }
                             break;
                     }
-                }
-                omiteMais = true;
+                    omiteMais = true;
 
-                explicacaoExercise.append(" + M(x) = 0 $$");
-                explicacaoExercise.append(textoTemp);
-                explicacaoExercise.append("Substituindo os valores numéricos, encontra-se $$" + " M(x) = ");
+                    explicacaoExercise.append(" + M(x) = 0 $$");
+                    explicacaoExercise.append(textoTemp);
+                    explicacaoExercise.append("Substituindo os valores numéricos, encontra-se $$" + " M(x) = ");
+                }
+
+            }
 
                 var somaTemp = 0;
                 var somaTempx = 0;
                 var somaTempxx = 0;
                 var somaTempxxx = 0;
-                for (j = 0; j < forcas.size(); j++) {
+                for (int j = 0; j < forcas.size(); j++) {
                     if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
                             (forcas.get(j).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA && forcas.get(j).getPosition() < xfinal) ||
                             (forcas.get(j).tipo == EnumForcaTipo.FORCA_REACAO && forcas.get(j).getPosition() < xfinal) ||
@@ -643,11 +645,9 @@ public class ExplicacaoExerciseService {
 
                     explicacaoExercise.append("$$");
                 }
-
-                explicacaoExercise.append("<h2> " + ("Gráfico") + " </h2> <div id='grafico-fletor' class='grafico'> </div>");
-                this.explicacaoExercise += explicacaoExercise.toString();
-            }
         }
+        explicacaoExercise.append("<h2> " + ("Gráfico") + " </h2> <div id='grafico-fletor' class='grafico'> </div>");
+        this.explicacaoExercise += explicacaoExercise.toString();
     }
     public String getExplicacaoExercise() {
         return explicacaoExercise;
