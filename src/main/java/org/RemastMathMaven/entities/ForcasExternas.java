@@ -4,18 +4,18 @@ import javax.persistence.Entity;
 import java.util.List;
 
 @Entity
-public class ForcasInternas {
+public class ForcasExternas {
     private List<ForcaPontual> listaForcasPontual;
     private List<ForcaDistribuida> listaForcasDistribuida;
     private List<ForcaMomento> listaForcasMomento;
 
-    public ForcasInternas(List<ForcaPontual> listaForcaPontual, List<ForcaDistribuida> distribuida, List<ForcaMomento> momento) {
+    public ForcasExternas(List<ForcaPontual> listaForcaPontual, List<ForcaDistribuida> distribuida, List<ForcaMomento> momento) {
         this.listaForcasPontual = listaForcaPontual;
         this.listaForcasDistribuida = distribuida;
         this.listaForcasMomento = momento;
     }
 
-    public ForcasInternas(List<ForcaPontual> listaForcaPontual) {
+    public ForcasExternas(List<ForcaPontual> listaForcaPontual) {
         this.listaForcasPontual = listaForcaPontual;
     }
 

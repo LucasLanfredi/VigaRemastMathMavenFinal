@@ -4,15 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a58bd14a-cdeb-48ba-a67a-5997ec72e19e" name="Changes" comment="atualizando back">
+    <list default="true" id="ff8ae354-3eec-4e1d-9131-7aac7661c327" name="Changes" comment="atualizando back">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/DTOService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/ForcasExternasDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ExplicacaoExercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ExplicacaoExercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcaDistribuida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcaDistribuida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Controller/CountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Controller/CountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Validator/ValidateValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/Validator/ValidateValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Apoios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Apoios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Cortante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Cortante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ExplicacaoExerciseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ExplicacaoExerciseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Fletor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Fletor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Forcas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Forcas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasInternas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasInternas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasInternas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/ForcasExternas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entities/Viga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/ApoiosDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/ApoiosDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/VigaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/entitiesDTO/VigaDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/FletorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/FletorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ForcasService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ForcasService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/PositionFindService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/PositionFindService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/SecoesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/SecoesService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,5 +165,26 @@
     <MESSAGE value="Terminando metodos de entidades, e criando as entidades que vem do front. Alem de arrumar algumas configuracoes do Spring" />
     <MESSAGE value="atualizando back" />
     <option name="LAST_COMMIT_MESSAGE" value="atualizando back" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/ReacoesService.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/RemastMathMaven/services/FletorService.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

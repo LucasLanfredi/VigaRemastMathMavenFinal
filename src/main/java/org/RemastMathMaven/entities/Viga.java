@@ -1,6 +1,9 @@
 package org.RemastMathMaven.entities;
 
 
+import org.RemastMathMaven.entitiesDTO.ApoiosDTO;
+import org.RemastMathMaven.entitiesDTO.ForcasExternasDTO;
+
 import javax.persistence.Entity;
 import java.util.List;
 @Entity
@@ -8,13 +11,13 @@ public class Viga {
 
     private int tamanhodaViga;
 
-    private ForcasInternas forcasInternas;
+    private ForcasExternas forcasExternas;
     private Apoios apoioInicial;
     private Apoios apoioFinal;
 
-    public Viga(int tamanhodaViga, ForcasInternas forcasInternas, Apoios opoioInicial, Apoios apoioFinal) {
+    public Viga(int tamanhodaViga, ForcasExternas forcasExternas, Apoios opoioInicial, Apoios apoioFinal) {
         this.tamanhodaViga = tamanhodaViga;
-        this.forcasInternas = forcasInternas;
+        this.forcasExternas = forcasExternas;
         this.apoioInicial = opoioInicial;
         this.apoioFinal = apoioFinal;
     }
@@ -27,12 +30,12 @@ public class Viga {
         this.tamanhodaViga = tamanhodaViga;
     }
 
-    public ForcasInternas getForcasInternas() {
-        return forcasInternas;
+    public ForcasExternas getForcasInternas() {
+        return forcasExternas;
     }
 
-    public void setForcasInternas(ForcasInternas forcasInternas) {
-        this.forcasInternas = forcasInternas;
+    public void setForcasInternas(ForcasExternas forcasExternas) {
+        this.forcasExternas = forcasExternas;
     }
 
     public Apoios getApoioInicial() {
@@ -56,14 +59,14 @@ public class Viga {
     }
 
     public List<ForcaPontual> listarForcasPontuais() {
-        return this.forcasInternas.getListaForcasPontual();
+        return this.forcasExternas.getListaForcasPontual();
     }
 
     public List<ForcaDistribuida> listarForcasDistribuida() {
-        return this.forcasInternas.getListaForcasDistribuida();
+        return this.forcasExternas.getListaForcasDistribuida();
     }
 
     public List<ForcaMomento> listarForcasMomento() {
-        return this.forcasInternas.getListaForcasMomento();
+        return this.forcasExternas.getListaForcasMomento();
     }
 }

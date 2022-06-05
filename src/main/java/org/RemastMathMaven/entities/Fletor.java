@@ -30,20 +30,6 @@ public class Fletor {
         return positionY;
     }
 
-    public int findIndexOfPositionX(int value) {
-        return IntStream.range(0, this.positionY.length)
-                .filter(i->this.positionY[i]==value)
-                .findFirst()
-                .getAsInt();
-    }
-
-    public int findIndexOfPositionY(int j) {
-        return IntStream.range(0, this.positionY.length)
-                .filter(i->this.positionY[i]==j)
-                .findFirst()
-                .getAsInt();
-    }
-
     public void setPositionY(int[] positionY) {
         this.positionY = positionY;
     }

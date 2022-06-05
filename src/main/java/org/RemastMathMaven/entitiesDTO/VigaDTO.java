@@ -11,13 +11,13 @@ public class VigaDTO {
 
     private int tamanhodaViga;
 
-    private ForcasInternas forcasInternas;
+    private ForcasExternas forcasExternas;
     private Apoios apoioInicial;
     private Apoios apoioFinal;
 
-    public VigaDTO(int tamanhodaViga, ForcasInternas forcasInternas, Apoios opoioInicial, Apoios apoioFinal) {
+    public VigaDTO(int tamanhodaViga, ForcasExternas forcasExternas, Apoios opoioInicial, Apoios apoioFinal) {
         this.tamanhodaViga = tamanhodaViga;
-        this.forcasInternas = forcasInternas;
+        this.forcasExternas = forcasExternas;
         this.apoioInicial = opoioInicial;
         this.apoioFinal = apoioFinal;
     }
@@ -30,12 +30,12 @@ public class VigaDTO {
         this.tamanhodaViga = tamanhodaViga;
     }
 
-    public ForcasInternas getForcasInternas() {
-        return forcasInternas;
+    public ForcasExternas getForcasExternas() {
+        return forcasExternas;
     }
 
-    public void setForcasInternas(ForcasInternas forcasInternas) {
-        this.forcasInternas = forcasInternas;
+    public void setForcasExternas(ForcasExternas forcasExternas) {
+        this.forcasExternas = forcasExternas;
     }
 
     public Apoios getApoioInicial() {
@@ -52,21 +52,5 @@ public class VigaDTO {
 
     public void setApoioFinal(Apoios apoioFinal) {
         this.apoioFinal = apoioFinal;
-    }
-
-    public List<Apoios> getListOfApoios(){
-        return List.of(this.apoioInicial,this.apoioFinal);
-    }
-
-    public List<ForcaPontual> listarForcasPontuais() {
-        return this.forcasInternas.getListaForcasPontual();
-    }
-
-    public List<ForcaDistribuida> listarForcasDistribuida() {
-        return this.forcasInternas.getListaForcasDistribuida();
-    }
-
-    public List<ForcaMomento> listarForcasMomento() {
-        return this.forcasInternas.getListaForcasMomento();
     }
 }

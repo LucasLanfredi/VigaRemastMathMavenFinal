@@ -67,7 +67,7 @@ public class ExplicacaoExerciseService {
             int x = 0;
             for(Forcas forca : cargasExternas){
                 if(forca.tipo == EnumForcaTipo.FORCA_REACAO){
-                    forcasDeReacao.set(x, forca);
+                    forcasDeReacao.add(forca);
                     x++;
                 }
             }
@@ -173,16 +173,16 @@ public class ExplicacaoExerciseService {
             explicacaoExercise.append("Substituindo os valores numéricos, encontra-se $$");
             for (int i = 0; i < forcasDeReacao.size(); i++) {
                 if (i != 0) {
-                    explicacaoExercise.append("R_{").append(i + 1).append("}(").append(apoios.get(i).getPosition()).append(" - ").append(apoios.get(0).getPosition()).append(")");
+                    explicacaoExercise.append("R_{").append(i + 1).append("}(").append(apoios.get(i).getPosicao()).append(" - ").append(apoios.get(0).getPosicao()).append(")");
                 }
             }
             explicacaoExercise.append(" = ");
         for (Forcas cargasExterna : cargasExternas) {
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_PONTUAL) {
-                explicacaoExercise.append("+(").append(cargasExterna.getForcaAplicada()).append(")(").append(cargasExterna.getPosition()).append(" - ").append(apoios.get(0).getPosition()).append(")");
+                explicacaoExercise.append("+(").append(cargasExterna.getForcaAplicada()).append(")(").append(cargasExterna.getPosition()).append(" - ").append(apoios.get(0).getPosicao()).append(")");
             }
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
-                explicacaoExercise.append("+(").append(cargasExterna.getForcaResultante()).append(")(").append(cargasExterna.getPositionMedia()).append(" - ").append(apoios.get(0).getPosition()).append(")");
+                explicacaoExercise.append("+(").append(cargasExterna.getForcaResultante()).append(")(").append(cargasExterna.getPositionMedia()).append(" - ").append(apoios.get(0).getPosicao()).append(")");
             }
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_MOMENTO) {
                 explicacaoExercise.append("-(").append(cargasExterna.getForcaAplicada()).append(")");
@@ -193,10 +193,10 @@ public class ExplicacaoExerciseService {
             somaTemp = 0;
         for (Forcas cargasExterna : cargasExternas) {
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_PONTUAL) {
-                somaTemp += cargasExterna.getForcaAplicada() * (cargasExterna.getPosition() - apoios.get(0).getPosition());
+                somaTemp += cargasExterna.getForcaAplicada() * (cargasExterna.getPosition() - apoios.get(0).getPosicao());
             }
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
-                somaTemp += cargasExterna.getForcaResultante() * (cargasExterna.getPositionMedia() - apoios.get(0).getPosition());
+                somaTemp += cargasExterna.getForcaResultante() * (cargasExterna.getPositionMedia() - apoios.get(0).getPosicao());
             }
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_MOMENTO) {
                 somaTemp -= cargasExterna.getForcaAplicada();
@@ -205,7 +205,7 @@ public class ExplicacaoExerciseService {
 
             for (int i = 0; i < forcasDeReacao.size(); i++) {
                 if (i != 0) {
-                    switch (apoios.get(i).getPosition() - apoios.get(0).getPosition()) {
+                    switch (apoios.get(i).getPosicao() - apoios.get(0).getPosicao()) {
                         case 1:
                             explicacaoExercise.append("R_{").append(i + 1).append("}");
                             break;
@@ -213,7 +213,7 @@ public class ExplicacaoExerciseService {
                             explicacaoExercise.append("-R_{").append(i + 1).append("}");
                             break;
                         default:
-                            explicacaoExercise.append(apoios.get(i).getPosition() - apoios.get(0).getPosition()).append("R_{").append(i + 1).append("}");
+                            explicacaoExercise.append(apoios.get(i).getPosicao() - apoios.get(0).getPosicao()).append("R_{").append(i + 1).append("}");
                             break;
                     }
                 }
@@ -244,10 +244,10 @@ public class ExplicacaoExerciseService {
             somaTemp = 0;
         for (Forcas cargasExterna : cargasExternas) {
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_PONTUAL) {
-                somaTemp += cargasExterna.getForcaAplicada() * (cargasExterna.getPosition() - apoios.get(0).getPosition());
+                somaTemp += cargasExterna.getForcaAplicada() * (cargasExterna.getPosition() - apoios.get(0).getPosicao());
             }
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
-                somaTemp += cargasExterna.getForcaResultante() * (cargasExterna.getPositionMedia() - apoios.get(0).getPosition());
+                somaTemp += cargasExterna.getForcaResultante() * (cargasExterna.getPositionMedia() - apoios.get(0).getPosicao());
             }
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_MOMENTO) {
                 somaTemp -= cargasExterna.getForcaAplicada();
@@ -256,7 +256,7 @@ public class ExplicacaoExerciseService {
 
             for (int i = 0; i < forcasDeReacao.size(); i++) {
                 if (i != 0) {
-                    switch (apoios.get(i).getPosition() - apoios.get(0).getPosition()) {
+                    switch (apoios.get(i).getPosicao() - apoios.get(0).getPosicao()) {
                         case 1:
                             explicacaoExercise.append("R_{").append(i + 1).append("}");
                             break;
@@ -264,7 +264,7 @@ public class ExplicacaoExerciseService {
                             explicacaoExercise.append("-R_{").append(i + 1).append("}");
                             break;
                         default:
-                            explicacaoExercise.append(apoios.get(i).getPosition() - apoios.get(0).getPosition()).append("R_{").append(i + 1).append("}");
+                            explicacaoExercise.append(apoios.get(i).getPosicao() - apoios.get(0).getPosicao()).append("R_{").append(i + 1).append("}");
                             break;
                     }
                 }
@@ -274,7 +274,7 @@ public class ExplicacaoExerciseService {
             for (int i = 0; i < forcasDeReacao.size(); i++) {
                 explicacaoExercise.append("$$ R_{").append(i + 1).append("} = ").append(-forcasDeReacao.get(i).getForcaAplicada()).append("\\text{N}$$");
             }
-            this.explicacaoExercise = explicacaoExercise.toString();
+            this.explicacaoExercise += explicacaoExercise.toString();
     }
 
     public void setResultadoEsforcoCortante(List<Forcas> forcas, List<Cortante> cortanteCortantes) {
@@ -294,8 +294,8 @@ public class ExplicacaoExerciseService {
         }
 
         for (int i = 0; i < cortanteCortantes.size(); i++) {
-            var xinicial = cortanteCortantes.get(i).findIndexOfPositionX(0);
-            var xfinal = cortanteCortantes.get(i).findIndexOfPositionX(cortanteCortantes.get(i).positionX.length - 1);
+            var xinicial = cortanteCortantes.get(i).getPositionX()[0];
+            var xfinal = cortanteCortantes.get(i).getPositionX()[cortanteCortantes.get(i).getPositionX().length - 1];
             StringBuilder textoTemp = new StringBuilder();
             explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" $ ( ").append(xinicial).append(" \\leq x \\leq ").append(xfinal).append(" ) $</h2> ").append("Resolvendo o balanço de forças na seção").append(":  <canvas id='cortante-viga-").append(i + 1).append("' style='width: 100%'></canvas> $$");
 
@@ -441,7 +441,7 @@ public class ExplicacaoExerciseService {
 
         explicacaoExercise.append("<h2> Gráfico </h2> <div id='grafico-cortante' class='grafico'> </div>");
 
-        this.explicacaoExercise = explicacaoExercise.toString();
+        this.explicacaoExercise += explicacaoExercise.toString();
     }
 
     public void setResultadoMomentoFletor(List<Forcas> forcas, List<Fletor> listOfFletor) {
@@ -464,18 +464,18 @@ public class ExplicacaoExerciseService {
         }
 
         for (int i = 0; i < listOfFletor.size(); i++) {
-            var xinicial = listOfFletor.get(i).findIndexOfPositionX(0);
-            var xfinal = listOfFletor.get(i).findIndexOfPositionX(listOfFletor.get(i).getPositionX().length - 1);
+            var xinicial = listOfFletor.get(i).getPositionX()[0];
+            var xfinal = listOfFletor.get(i).getPositionX()[listOfFletor.get(i).getPositionX().length - 1];
             var textoTemp = "";
             explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" $ ( ").append(xinicial).append(" \\leq x \\leq ")
                     .append(xfinal).append(" ) $</h2> ").append("Resolvendo o balanço de momentos na seção").append(":  <canvas id='fletor-viga-")
                     .append(i + 1).append("' style='width: 100%'></canvas>  $$");
 
             for (int j = 0; j < forcas.size(); j++) {
-                if ((forcas.get(i).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(i).getPosition() < xfinal) ||
-                        (forcas.get(j).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA && forcas.get(i).getPosition() < xfinal) ||
-                        (forcas.get(i).tipo == EnumForcaTipo.FORCA_REACAO && forcas.get(i).getPosition() < xfinal) ||
-                        (forcas.get(i).tipo == EnumForcaTipo.FORCA_MOMENTO && forcas.get(i).getPosition() < xfinal)) {
+                if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
+                        (forcas.get(j).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA && forcas.get(j).getPosition() < xfinal) ||
+                        (forcas.get(j).tipo == EnumForcaTipo.FORCA_REACAO && forcas.get(j).getPosition() < xfinal) ||
+                        (forcas.get(j).tipo == EnumForcaTipo.FORCA_MOMENTO && forcas.get(j).getPosition() < xfinal)) {
                     switch (forcas.get(j).tipo) {
                         case FORCA_PONTUAL:
                             if (omiteMais) {
@@ -646,7 +646,7 @@ public class ExplicacaoExerciseService {
                 }
 
                 explicacaoExercise.append("<h2> " + ("Gráfico") + " </h2> <div id='grafico-fletor' class='grafico'> </div>");
-                this.explicacaoExercise = explicacaoExercise.toString();
+                this.explicacaoExercise += explicacaoExercise.toString();
             }
         }
     }

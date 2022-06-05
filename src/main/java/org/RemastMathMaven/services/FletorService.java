@@ -1,5 +1,6 @@
 package org.RemastMathMaven.services;
 
+import org.RemastMathMaven.entities.Cortante;
 import org.RemastMathMaven.entities.EnumForcaTipo;
 import org.RemastMathMaven.entities.Fletor;
 import org.RemastMathMaven.entities.Forcas;
@@ -8,23 +9,24 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.RemastMathMaven.services.SecoesService.linspace;
+
 @Service
 public class FletorService {
 
     public List<Fletor> criarUmaListaDeSecoesWithForcas(List<Forcas> allForcas, List<Integer> positionsList) {
         List<Fletor> secoesFletoras = new ArrayList<>();
-        int[] positionY = {0, 0, 100};
         for (int i = 0; i < (positionsList.size() - 1); i++) {
-            int[] positionX = {positionsList.get(i), positionsList.get(i+1), 100};
-            secoesFletoras.set(i,new Fletor(positionX, positionY));
+            secoesFletoras.add(new Fletor(linspace(positionsList.get(i), positionsList.get(i + 1), 100),
+                    linspace(0, 0, 100)));
         }
 
-        for (int i = 0; i <= secoesFletoras.size(); i++) { // Em cada seção
-            int xmax = secoesFletoras.get(i).findIndexOfPositionY(secoesFletoras.get(i).getPositionX().length - 1);
-            int xmin = secoesFletoras.get(i).findIndexOfPositionX(0);
+        for (int i = 0; i <= secoesFletoras.size()-1; i++) { // Em cada seção
+            int xmax = secoesFletoras.get(i).getPositionX()[secoesFletoras.get(i).getPositionX().length - 1];
+            int xmin = secoesFletoras.get(i).getPositionX()[0];
 
             for (int j = 0; j < secoesFletoras.get(i).getPositionX().length; j++) { // Para cada valor de X
-                int xatual = secoesFletoras.get(i).findIndexOfPositionX(j);
+                int xatual = secoesFletoras.get(i).getPositionX()[secoesFletoras.get(i).getPositionX().length - 1 ];
                 int matual = 0;
 
                 for (int k = 0; k < allForcas.size(); k++) { // Para cada carga

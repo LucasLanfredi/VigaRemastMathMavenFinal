@@ -1,6 +1,7 @@
 package org.RemastMathMaven.entities;
 
 import javax.persistence.Entity;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -80,7 +81,7 @@ public class Forcas {
 
 
     public static List<Forcas> generateList() {
-        return List.of(new Forcas());
+        return new ArrayList<>();
     }
 
     public int getPositionMedia() {

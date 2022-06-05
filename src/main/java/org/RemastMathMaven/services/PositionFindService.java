@@ -32,8 +32,8 @@ public class PositionFindService {
 
     public List<Integer> getPositionOfApoioEmUmaLista(Apoios apoioInicial, Apoios apoioFinal){
         List<Integer> list = new ArrayList<>();
-        list.add(apoioInicial.getPosition());
-        list.add(apoioFinal.getPosition());
+        list.add(apoioInicial.getPosicao());
+        list.add(apoioFinal.getPosicao());
         return list;
     }
 

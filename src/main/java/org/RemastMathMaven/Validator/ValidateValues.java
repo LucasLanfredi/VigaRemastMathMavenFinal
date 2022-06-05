@@ -28,6 +28,10 @@ public class ValidateValues {
 
     private int vigaTamanho;
 
+    public ValidateValues(ForcasService forcasService){
+        this.forcasService = forcasService;
+    }
+
     public void verficarVigaisValid(Viga viga) {
 
         this.vigaTamanho = viga.getTamanhodaViga();
@@ -42,29 +46,15 @@ public class ValidateValues {
     }
 
     public void verificarForcasisValid(Viga viga) {
-        List<Forcas> listaForcas = forcasService.getAllListaForcasWithReacao(viga, List.of(viga.getApoioFinal(),viga.getApoioInicial()));
         List<Apoios> listaApoios = viga.getListOfApoios();
-        if (listaForcas.isEmpty()) {
-            ResponseEntity.badRequest().body(FORCAS_IS_EMPTY);
-        }
 
         if(listaApoios.size() < 2){
             ResponseEntity.badRequest().body(QUANTIDADE_DE_APOIOS_INSUFICIENTE);
         }
 
         for (Apoios apoio : listaApoios){
-            if (apoio.getPosition() < 0){
+            if (apoio.getPosicao() < 0){
                 ResponseEntity.badRequest().body(APOIOS_ESTA_COM_O_VALOR_INCORRETO);
-            }
-        }
-
-        for (Forcas forca : listaForcas) {
-            if (forca.getPosition() <= 0 & vigaTamanho < forca.getPosition()) {
-            }
-            if (forca.tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
-                if (forca.getPositionFinal() <= forca.getPosition()) {
-                    ResponseEntity.badRequest().body(TAMANHO_DA_CARGA_DISTRIBUIDA_INVERTIDO);
-                }
             }
         }
     }

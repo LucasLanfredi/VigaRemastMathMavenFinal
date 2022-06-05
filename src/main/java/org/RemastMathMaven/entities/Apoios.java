@@ -7,29 +7,30 @@ import javax.persistence.Entity;
 @Entity
 public class Apoios {
 
-    private int position;
-    private int typeApoio;
+    private String tipo;
+
+    private int posicao;
     private int forcaReacaoDoApoio;
 
-    public Apoios(int position, int typeApoio) {
-        this.position = position;
-        this.typeApoio = typeApoio;
+    public Apoios(String tipo, int posicao) {
+        this.posicao = posicao;
+        this.tipo = tipo;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTypeApoio(int typeApoio) {
-        this.typeApoio = typeApoio;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public int getPosition() {
-        return position;
+    public int getPosicao() {
+        return posicao;
     }
 
-    public int getTypeApoio() {
-        return typeApoio;
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
     }
 
     public int getForcaReacaoDoApoio() {

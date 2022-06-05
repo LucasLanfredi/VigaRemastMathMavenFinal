@@ -10,8 +10,8 @@ public class ReacoesService extends ForcasService {
 
     public void setApoioValues(Viga viga, ExplicacaoExerciseService resposta) {
         int sumForcasPontuais = sumForcasPontuais(viga);
-        int forcaDoApoioFinal = sumForcasMomentoParaDescobrirForcaNoApoio(viga, viga.getApoioInicial().getPosition(),
-                viga.getApoioFinal().getPosition());
+        int forcaDoApoioFinal = sumForcasMomentoParaDescobrirForcaNoApoio(viga, viga.getApoioInicial().getPosicao(),
+                viga.getApoioFinal().getPosicao());
         int forcaDoApoioInicial = forcaDoApoioInicial(forcaDoApoioFinal, sumForcasPontuais);
         viga.getApoioInicial().setForcaReacaoDoApoio(forcaDoApoioInicial);
         viga.getApoioFinal().setForcaReacaoDoApoio(forcaDoApoioFinal);
@@ -35,13 +35,11 @@ public class ReacoesService extends ForcasService {
         List<ForcaMomento> forcaMomentoList = viga.listarForcasMomento();
         List<ForcaDistribuida> forcaDistribuidaList = viga.listarForcasDistribuida();
 
-        if (!forcaPontualList.isEmpty()) { sumPontual(sumForcasReacoes, forcaPontualList, referencePoint); }
-        if (!forcaMomentoList.isEmpty()) { sumMomentoList(sumForcasReacoes, forcaMomentoList); }
-        if (!forcaDistribuidaList.isEmpty()) { sumDistribuida(sumForcasReacoes, forcaDistribuidaList, referencePoint); }
+        if (!forcaPontualList.isEmpty()) { sumForcasReacoes +=  sumPontual(sumForcasReacoes, forcaPontualList, referencePoint); }
+        if (!forcaMomentoList.isEmpty()) { sumForcasReacoes += sumMomentoList(sumForcasReacoes, forcaMomentoList); }
+        if (!forcaDistribuidaList.isEmpty()) { sumForcasReacoes += sumDistribuida(sumForcasReacoes, forcaDistribuidaList, referencePoint); }
 
-        viga.getForcasInternas().setValueOnForcasPontual(referencePoint, sumForcasReacoes);
         int forcaDeReacaoDoApoio2 = sumForcasReacoes / (positionApoioFinal - referencePoint );
-        viga.getForcasInternas().setValueOnForcasPontual(referencePoint, forcaDeReacaoDoApoio2);
 
         return forcaDeReacaoDoApoio2;
 
@@ -51,11 +49,11 @@ public class ReacoesService extends ForcasService {
         return forcaDoApoioFinal - sumForcasPontuais;
     }
 
-    private int sumPontual(int sumForcasMomento, List<ForcaPontual> forcaPontualList, int referencePoint) {
+    private int sumPontual(int sumForcasPontual, List<ForcaPontual> forcaPontualList, int referencePoint) {
         for (ForcaPontual forcaPontual : forcaPontualList) {
-            sumForcasMomento += (forcaPontual.getForcaAplicada() * (forcaPontual.getPosition() - referencePoint));
+            sumForcasPontual += (forcaPontual.getForcaAplicada() * (forcaPontual.getPosition() - referencePoint));
         }
-        return sumForcasMomento;
+        return sumForcasPontual;
     }
 
     private int sumMomentoList(int sumForcasMomento, List<ForcaMomento> forcaMomentoList) {

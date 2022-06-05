@@ -2,36 +2,28 @@ package org.RemastMathMaven.entitiesDTO;
 
 public class ApoiosDTO {
 
-    private int position;
-    private int typeApoio;
-    private int forcaReacaoDoApoio;
+    private String tipo;
+    private int posicao;
 
-    public ApoiosDTO(int position, int typeApoio) {
-        this.position = position;
-        this.typeApoio = typeApoio;
+    public ApoiosDTO( String tipo, int posicao) {
+        this.posicao = posicao;
+        this.tipo = tipo;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    public void setPosition(int posicao) {
+        this.posicao = posicao;
     }
 
-    public void setTypeApoio(int typeApoio) {
-        this.typeApoio = typeApoio;
+    public void setTypeApoio(String tipo) {
+        this.tipo = tipo;
     }
 
     public int getPosition() {
-        return position;
+        return posicao;
     }
 
-    public int getTypeApoio() {
-        return typeApoio;
+    public String getTypeApoio() {
+        return tipo;
     }
 
-    public int getForcaReacaoDoApoio() {
-        return forcaReacaoDoApoio;
-    }
-
-    public void setForcaReacaoDoApoio(int forcaReacaoDoApoio) {
-        this.forcaReacaoDoApoio = forcaReacaoDoApoio;
-    }
 }
