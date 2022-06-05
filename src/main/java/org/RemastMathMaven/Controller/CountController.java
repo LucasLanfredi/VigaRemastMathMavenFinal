@@ -38,13 +38,11 @@ public class CountController {
         final String respostaValue = count.countForcasDaViga(viga, resposta);
         this.resposta = respostaValue;
 
-        System.out.println("1" + resposta);
         return ResponseEntity.ok().body(HttpStatus.OK.toString());
     }
 
     @GetMapping("/result")
     public String result() {
-        System.out.println("2" +resposta);
         return resposta;
     }
 }
