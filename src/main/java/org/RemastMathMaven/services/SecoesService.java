@@ -30,8 +30,13 @@ public class SecoesService {
                     int vatual = 0;
 
                     for (int l = 0; l < forcas.size(); l++) {
-                        if (forcas.get(l).tipo == EnumForcaTipo.FORCA_PONTUAL ||
-                                forcas.get(l).tipo == EnumForcaTipo.FORCA_REACAO) {
+                        if (forcas.get(l).tipo == EnumForcaTipo.FORCA_PONTUAL) {
+                            if (forcas.get(l).getPosition() <= xatual && forcas.get(l).getPosition() != xmax) {
+                                vatual += forcas.get(l).getForcaAplicada();
+                            }
+                        }
+
+                        if (forcas.get(l).tipo == EnumForcaTipo.FORCA_REACAO) {
                             if (forcas.get(l).getPosition() <= xatual && forcas.get(l).getPosition() != xmax) {
                                 vatual -= forcas.get(l).getForcaAplicada();
                             }
