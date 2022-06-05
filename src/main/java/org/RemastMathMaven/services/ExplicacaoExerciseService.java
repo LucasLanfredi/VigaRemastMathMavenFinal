@@ -468,7 +468,7 @@ public class ExplicacaoExerciseService {
             var xfinal = listOfFletor.get(i).getPositionX()[listOfFletor.get(i).getPositionX().length - 1];
             var textoTemp = "";
             explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" ( ").append(xinicial).append(" &#8804 x &#8804 ")
-                    .append(xfinal).append(" ) </h2> ").append("Resolvendo o balanço de momentos na seção:");
+                    .append(xfinal).append(" ) </h2> ").append("Resolvendo o balanço de momentos na seção:$$");
 
             for (int j = 0; j < forcas.size(); j++) {
                 if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
