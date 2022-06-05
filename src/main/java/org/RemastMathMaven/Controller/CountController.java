@@ -4,6 +4,7 @@ import org.RemastMathMaven.Validator.ValidateValues;
 import org.RemastMathMaven.entities.*;
 import org.RemastMathMaven.entitiesDTO.VigaDTO;
 import org.RemastMathMaven.services.Count;
+import org.RemastMathMaven.services.ExplicacaoExerciseService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
