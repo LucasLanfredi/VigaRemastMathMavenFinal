@@ -38,6 +38,35 @@ public class ForcasService {
         return listaDeForcas;
     }
 
+    public int sumAllForcasWithoutMomento(List<Forcas> listForcas){
+        int sumForcas = 0;
+        for(Forcas forca : listForcas){
+            if(forca.tipo == EnumForcaTipo.FORCA_PONTUAL || forca.tipo == EnumForcaTipo.FORCA_REACAO){
+                sumForcas += forca.getForcaAplicada();
+            }
+            if(forca.tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
+                sumForcas += forca.getForcaResultante();
+            }
+        }
+        return sumForcas;
+    }
+
+    public int sumAllForcas(List<Forcas> listForcas){
+        int sumForcas = 0;
+        for(Forcas forca : listForcas){
+            if(forca.tipo == EnumForcaTipo.FORCA_PONTUAL || forca.tipo == EnumForcaTipo.FORCA_REACAO){
+                sumForcas += forca.getForcaAplicada();
+            }
+            if(forca.tipo == EnumForcaTipo.FORCA_MOMENTO){
+                sumForcas -= forca.getForcaAplicada();
+            }
+            if(forca.tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
+                sumForcas += forca.getForcaResultante();
+            }
+        }
+        return sumForcas;
+    }
+
     public List<Forcas> getAllListaForcasWithReacao(Viga viga, List<Apoios> apoios) {
         List<Forcas> listaDeForcas = new ArrayList<>();
         List<ForcaPontual> listaForcasPontual = viga.listarForcasPontuais();

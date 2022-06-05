@@ -4,6 +4,7 @@ import org.RemastMathMaven.entities.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -73,6 +74,7 @@ public class PositionFindService {
                 newList.add(position);
             }
         }
+        Collections.sort(newList);
         return newList;
     }
 

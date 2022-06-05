@@ -9,10 +9,11 @@ import java.util.List;
 public class ReacoesService extends ForcasService {
 
     public void setApoioValues(Viga viga, ExplicacaoExerciseService resposta) {
-        int sumForcasPontuais = sumForcasPontuais(viga);
+        List<Forcas> listaForcas = getAllListaForcas(viga);
+        int sumForcasdaViga = sumAllForcasWithoutMomento(listaForcas);
         int forcaDoApoioFinal = sumForcasMomentoParaDescobrirForcaNoApoio(viga, viga.getApoioInicial().getPosicao(),
                 viga.getApoioFinal().getPosicao());
-        int forcaDoApoioInicial = forcaDoApoioInicial(forcaDoApoioFinal, sumForcasPontuais);
+        int forcaDoApoioInicial = forcaDoApoioInicial(forcaDoApoioFinal, sumForcasdaViga);
         viga.getApoioInicial().setForcaReacaoDoApoio(forcaDoApoioInicial);
         viga.getApoioFinal().setForcaReacaoDoApoio(forcaDoApoioFinal);
 
@@ -35,9 +36,9 @@ public class ReacoesService extends ForcasService {
         List<ForcaMomento> forcaMomentoList = viga.listarForcasMomento();
         List<ForcaDistribuida> forcaDistribuidaList = viga.listarForcasDistribuida();
 
-        if (!forcaPontualList.isEmpty()) { sumForcasReacoes +=  sumPontual(sumForcasReacoes, forcaPontualList, referencePoint); }
-        if (!forcaMomentoList.isEmpty()) { sumForcasReacoes += sumMomentoList(sumForcasReacoes, forcaMomentoList); }
-        if (!forcaDistribuidaList.isEmpty()) { sumForcasReacoes += sumDistribuida(sumForcasReacoes, forcaDistribuidaList, referencePoint); }
+        if (!forcaPontualList.isEmpty()) { sumForcasReacoes =  sumPontual(sumForcasReacoes, forcaPontualList, referencePoint); }
+        if (!forcaMomentoList.isEmpty()) { sumForcasReacoes = sumMomentoList(sumForcasReacoes, forcaMomentoList); }
+        //       if (!forcaDistribuidaList.isEmpty()) { sumForcasReacoes += sumDistribuida(sumForcasReacoes, forcaDistribuidaList, referencePoint); }
 
         int forcaDeReacaoDoApoio2 = sumForcasReacoes / (positionApoioFinal - referencePoint );
 
@@ -46,7 +47,7 @@ public class ReacoesService extends ForcasService {
     }
 
     public int forcaDoApoioInicial(int forcaDoApoioFinal, int sumForcasPontuais) {
-        return forcaDoApoioFinal - sumForcasPontuais;
+        return sumForcasPontuais - forcaDoApoioFinal ;
     }
 
     private int sumPontual(int sumForcasPontual, List<ForcaPontual> forcaPontualList, int referencePoint) {

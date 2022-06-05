@@ -73,7 +73,7 @@ public class ExplicacaoExerciseService {
             for (int i = 0; i < forcasDeReacao.size(); i++) {
                 explicacaoExercise.append("-R_{").append(i + 1).append("}");
             }
-            explicacaoExercise.append(" = 0 Em que: R representa as reações");
+            explicacaoExercise.append(" = 0 $$ Em que: R representa as reações");
             if (numForcaPontual > 0) {
                 explicacaoExercise.append("; F representa forças pontuais");
             }
@@ -297,8 +297,8 @@ public class ExplicacaoExerciseService {
             var xinicial = cortanteCortantes.get(i).getPositionX()[0];
             var xfinal = cortanteCortantes.get(i).getPositionX()[cortanteCortantes.get(i).getPositionX().length - 1];
             StringBuilder textoTemp = new StringBuilder();
-            explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" $ ( ").append(xinicial).append(" \\leq x \\leq ").append(xfinal).append(" ) $</h2> ").append("Resolvendo o balanço de forças na seção").append(":  <canvas id='cortante-viga-").append(i + 1).append("' style='width: 100%'></canvas> $$");
-
+            explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" $ ( ").append(xinicial).append(" \\leq x \\leq ").append(xfinal).append(" ) $</h2> ").append("Resolvendo o balanço de forças na seção:");
+            //TODO
             for (int j = 0; j < forcas.size(); j++) {
                 if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
                         (forcas.get(j).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA && forcas.get(j).getPosition() < xfinal) ||
@@ -439,7 +439,7 @@ public class ExplicacaoExerciseService {
 
         }
 
-        explicacaoExercise.append("<h2> Gráfico </h2> <div id='grafico-cortante' class='grafico'> </div>");
+        explicacaoExercise.append("<h2>  + tt(Gráfico) +  </h2> <div id='grafico-cortante' class='grafico'> </div>");
 
         this.explicacaoExercise += explicacaoExercise.toString();
     }
@@ -468,8 +468,7 @@ public class ExplicacaoExerciseService {
             var xfinal = listOfFletor.get(i).getPositionX()[listOfFletor.get(i).getPositionX().length - 1];
             var textoTemp = "";
             explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" $ ( ").append(xinicial).append(" \\leq x \\leq ")
-                    .append(xfinal).append(" ) $</h2> ").append("Resolvendo o balanço de momentos na seção").append(":  <canvas id='fletor-viga-")
-                    .append(i + 1).append("' style='width: 100%'></canvas>  $$");
+                    .append(xfinal).append(" ) $</h2> ").append("Resolvendo o balanço de momentos na seção:");
 
             for (int j = 0; j < forcas.size(); j++) {
                 if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
