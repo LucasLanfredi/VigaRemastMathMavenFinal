@@ -14,8 +14,8 @@ public class ReacoesService extends ForcasService {
         int forcaDoApoioFinal = sumForcasMomentoParaDescobrirForcaNoApoio(viga, viga.getApoioInicial().getPosicao(),
                 viga.getApoioFinal().getPosicao());
         int forcaDoApoioInicial = forcaDoApoioInicial(forcaDoApoioFinal, sumForcasdaViga);
-        viga.getApoioInicial().setForcaReacaoDoApoio(forcaDoApoioInicial);
-        viga.getApoioFinal().setForcaReacaoDoApoio(forcaDoApoioFinal);
+        viga.getApoioInicial().setForcaReacaoDoApoio(-forcaDoApoioInicial);
+        viga.getApoioFinal().setForcaReacaoDoApoio(-forcaDoApoioFinal);
 
     }
 
