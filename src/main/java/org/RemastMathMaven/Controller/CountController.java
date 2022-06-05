@@ -31,7 +31,6 @@ public class CountController {
     @PostMapping("")
     public ResponseEntity<String> count(@RequestBody VigaDTO vigaDTO) {
         Viga viga = new Viga(vigaDTO.getTamanhodaViga(), vigaDTO.getForcasExternas(), vigaDTO.getApoioInicial(), vigaDTO.getApoioFinal());
-//      Viga viga = modelMapper.map(vigaDTO, Viga.class);
         validateValues.verficarVigaisValid(viga);
         validateValues.verificarForcasisValid(viga);
 
