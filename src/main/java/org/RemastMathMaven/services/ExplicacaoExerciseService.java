@@ -467,8 +467,8 @@ public class ExplicacaoExerciseService {
             var xinicial = listOfFletor.get(i).getPositionX()[0];
             var xfinal = listOfFletor.get(i).getPositionX()[listOfFletor.get(i).getPositionX().length - 1];
             var textoTemp = "";
-            explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" $ ( ").append(xinicial).append(" \\leq x \\leq ")
-                    .append(xfinal).append(" ) $</h2> ").append("Resolvendo o balanço de momentos na seção:");
+            explicacaoExercise.append("<h2> " + "Seção" + " ").append(i + 1).append(" ( ").append(xinicial).append(" &#8804 x &#8804 ")
+                    .append(xfinal).append(" ) </h2> ").append("Resolvendo o balanço de momentos na seção:");
 
             for (int j = 0; j < forcas.size(); j++) {
                 if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
@@ -510,7 +510,7 @@ public class ExplicacaoExerciseService {
                                     explicacaoExercise.append("+W_{").append(j + 1).append("x}(x - \\bar{x}_{\\text{")
                                             .append("força").append(" }").append(j + 1).append("})");
                                 }
-                                textoTemp += "Em que" + " $W_{" + (j + 1) + "x}(x-\\bar{x})$ " + "representa o moment equivalente à carga distribuida aplicada apenas até a posição $x$, e não a carga completa, até $x_f$: ";
+                                textoTemp += "Em que" + " $W_{" + (j + 1) + "x}(x-\\bar{x})$ " + "representa o momento equivalente à carga distribuida aplicada apenas até a posição $x$, e não a carga completa, até $x_f$: ";
                                 if (wi == wf) { // Retangular
                                     var c2 = wi / 2;
                                     var c1 = -wi * xi;
@@ -556,7 +556,7 @@ public class ExplicacaoExerciseService {
                 }
                 omiteMais = true;
 
-                explicacaoExercise.append(" + M(x) = 0 $$");
+                explicacaoExercise.append(" + M(x) = 0$$");
                 explicacaoExercise.append(textoTemp);
                 explicacaoExercise.append("Substituindo os valores numéricos, encontra-se $$" + " M(x) = ");
 
