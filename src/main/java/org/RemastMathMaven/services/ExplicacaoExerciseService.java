@@ -32,85 +32,85 @@ public class ExplicacaoExerciseService {
 			*/
         boolean omiteMais = true;
 
-            // CONTA O NÚMERO DE CADA TIPO DE CARREGAMENTO
-            var numForcaPontual = 0;
-            var numForcaDistribuida = 0;
-            int numMomento = 0;
-            for (int i = 0; i < cargasExternas.size(); i++) {
-                switch (cargasExternas.get(i).tipo) {
-                    case FORCA_PONTUAL:
-                        numForcaPontual++;
-                        if (omiteMais) {
-                            explicacaoExercise.append("F_{" + (i + 1) + "}");
-                            omiteMais = false;
-                        } else {
-                            explicacaoExercise.append("+F_{" + (i + 1) + "}");
-                        }
-                        break;
-                    case FORCA_MOMENTO:
-                        numMomento++;
-                        break;
-                    case FORCA_DISTRIBUIDA:
-                        numForcaDistribuida++;
-                        if (omiteMais) {
-                            explicacaoExercise.append("W_{").append(i + 1).append("}");
-                            omiteMais = false;
-                        } else {
-                            explicacaoExercise.append("+W_{").append(i + 1).append("}");
-                        }
-                        break;
-                }
-            }
-
-
-            List<Forcas> forcasDeReacao = new ArrayList<>();
-            for(Forcas forca : cargasExternas){
-                if(forca.tipo == EnumForcaTipo.FORCA_REACAO){
-                    forcasDeReacao.add(forca);
-                }
-            }
-
-            for (int i = 0; i < forcasDeReacao.size(); i++) {
-                explicacaoExercise.append("-R_{").append(i + 1).append("}");
-            }
-            explicacaoExercise.append(" = 0 $$ Em que: R representa as reações");
-            if (numForcaPontual > 0) {
-                explicacaoExercise.append("; F representa forças pontuais");
-            }
-            if (numForcaDistribuida > 0) {
-                explicacaoExercise.append("; W representa a força total causada por uma força distribuida. Para calcular a esta força total se calcula a área abaixo da carga distribuida, portanto:");
-                for (int i = 0; i < cargasExternas.size(); i++) {
-                    if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
-                        var xi = cargasExternas.get(i).getPosition();
-                        var xf = cargasExternas.get(i).getPositionFinal();
-                        var wi = cargasExternas.get(i).getForcaAplicada();
-                        var wf = cargasExternas.get(i).getForcaAplicadaFinal();
-                        if (wi == wf) { // Retângulo, carga constante
-                            explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("retangular").append(": }W_{").append(i + 1).append("} = w(x_f-x_i) = ").append(wi).append("[(").append(xf).append(") - (").append(xi).append(")] = ").append(cargasExternas.get(i).getForcaResultante()).append("\\text{N}$$");
-                        } else if (wi != 0 && wf != 0) { // Trapézio
-                            explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", trapezoidal: } W_{").append(i + 1).append("} = \\frac{w_i + w_f}{2}(x_f-x_i) = \\frac{(").append(wi).append(") + (").append(wf).append(")}{2}[(").append(xf).append(") - (").append(xi).append(")] = ").append(cargasExternas.get(i).getForcaResultante()).append("\\text{N}$$");
-                        } else if (wi == 0) { // Triângulo crescente
-                            explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("triangular crescente").append(": } W_{").append(i + 1).append("} = \\frac{w_f}{2}(x_f-x_i) = \\frac{").append(wf).append("}{2}[(").append(xf).append(") - (").append(xi).append(")] = ").append(cargasExternas.get(i).getForcaResultante()).append("\\text{N}$$");
-                        } else if (wf == 0) { // Triângulo decrescente
-                            explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("triangular decrescente").append(": } W_{").append(i + 1).append("} = \\frac{w_i}{2}(x_f-x_i) = \\frac{").append(wi).append("}{2}[(").append(xf).append(") - (").append(xi).append(")] = ").append(cargasExternas.get(i).getForcaResultante()).append("\\text{N}$$");
-                        }
-                        explicacaoExercise.append("Em que" + xi + " e " + xf + " representam a posição inicial e final de aplicação da carga, respectivamente, e" + xi + " e " + xf + ", os valores, em N/m, iniciais e finais da carga distribuida");
+        // CONTA O NÚMERO DE CADA TIPO DE CARREGAMENTO
+        var numForcaPontual = 0;
+        var numForcaDistribuida = 0;
+        int numMomento = 0;
+        for (int i = 0; i < cargasExternas.size(); i++) {
+            switch (cargasExternas.get(i).tipo) {
+                case FORCA_PONTUAL:
+                    numForcaPontual++;
+                    if (omiteMais) {
+                        explicacaoExercise.append("F_{" + (i + 1) + "}");
+                        omiteMais = false;
+                    } else {
+                        explicacaoExercise.append("+F_{" + (i + 1) + "}");
                     }
-                }
+                    break;
+                case FORCA_MOMENTO:
+                    numMomento++;
+                    break;
+                case FORCA_DISTRIBUIDA:
+                    numForcaDistribuida++;
+                    if (omiteMais) {
+                        explicacaoExercise.append("W_{").append(i + 1).append("}");
+                        omiteMais = false;
+                    } else {
+                        explicacaoExercise.append("+W_{").append(i + 1).append("}");
+                    }
+                    break;
             }
+        }
 
-            explicacaoExercise.append(".\nPortanto, substituindo os valores numéricos, encontra-se: $$");
-            for (int i = 0; i < forcasDeReacao.size(); i++) {
-                if (omiteMais) {
-                    explicacaoExercise.append("R_{").append(i + 1).append("}");
-                    omiteMais = false;
-                } else {
-                    explicacaoExercise.append("+R_{").append(i + 1).append("}");
+
+        List<Forcas> forcasDeReacao = new ArrayList<>();
+        for (Forcas forca : cargasExternas) {
+            if (forca.tipo == EnumForcaTipo.FORCA_REACAO) {
+                forcasDeReacao.add(forca);
+            }
+        }
+
+        for (int i = 0; i < forcasDeReacao.size(); i++) {
+            explicacaoExercise.append("-R_{").append(i + 1).append("}");
+        }
+        explicacaoExercise.append(" = 0 $$ Em que: R representa as reações");
+        if (numForcaPontual > 0) {
+            explicacaoExercise.append("; F representa forças pontuais");
+        }
+        if (numForcaDistribuida > 0) {
+            explicacaoExercise.append("; W representa a força total causada por uma força distribuida. Para calcular a esta força total se calcula a área abaixo da carga distribuida, portanto:");
+            for (int i = 0; i < cargasExternas.size(); i++) {
+                if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
+                    var xi = cargasExternas.get(i).getPosition();
+                    var xf = cargasExternas.get(i).getPositionFinal();
+                    var wi = cargasExternas.get(i).getForcaAplicada();
+                    var wf = cargasExternas.get(i).getForcaAplicadaFinal();
+                    if (wi == wf) { // Retângulo, carga constante
+                        explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("retangular").append(": }W_{").append(i + 1).append("} = w(x_f-x_i) = ").append(wi).append("[(").append(xf).append(") - (").append(xi).append(")] = ").append(cargasExternas.get(i).getForcaResultante()).append("\\text{N}$$");
+                    } else if (wi != 0 && wf != 0) { // Trapézio
+                        explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", trapezoidal: } W_{").append(i + 1).append("} = \\frac{w_i + w_f}{2}(x_f-x_i) = \\frac{(").append(wi).append(") + (").append(wf).append(")}{2}[(").append(xf).append(") - (").append(xi).append(")] = ").append(cargasExternas.get(i).getForcaResultante()).append("\\text{N}$$");
+                    } else if (wi == 0) { // Triângulo crescente
+                        explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("triangular crescente").append(": } W_{").append(i + 1).append("} = \\frac{w_f}{2}(x_f-x_i) = \\frac{").append(wf).append("}{2}[(").append(xf).append(") - (").append(xi).append(")] = ").append(cargasExternas.get(i).getForcaResultante()).append("\\text{N}$$");
+                    } else if (wf == 0) { // Triângulo decrescente
+                        explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("triangular decrescente").append(": } W_{").append(i + 1).append("} = \\frac{w_i}{2}(x_f-x_i) = \\frac{").append(wi).append("}{2}[(").append(xf).append(") - (").append(xi).append(")] = ").append(cargasExternas.get(i).getForcaResultante()).append("\\text{N}$$");
+                    }
+                    explicacaoExercise.append("Em que" + xi + " e " + xf + " representam a posição inicial e final de aplicação da carga, respectivamente, e" + xi + " e " + xf + ", os valores, em N/m, iniciais e finais da carga distribuida");
                 }
             }
-            omiteMais = true;
-            explicacaoExercise.append(" = ");
-            var somaTemp = 0;
+        }
+
+        explicacaoExercise.append(".\nPortanto, substituindo os valores numéricos, encontra-se: $$");
+        for (int i = 0; i < forcasDeReacao.size(); i++) {
+            if (omiteMais) {
+                explicacaoExercise.append("R_{").append(i + 1).append("}");
+                omiteMais = false;
+            } else {
+                explicacaoExercise.append("+R_{").append(i + 1).append("}");
+            }
+        }
+        omiteMais = true;
+        explicacaoExercise.append(" = ");
+        var somaTemp = 0;
         for (Forcas cargasExterna : cargasExternas) {
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_PONTUAL) {
                 somaTemp += cargasExterna.getForcaAplicada();
@@ -119,63 +119,63 @@ public class ExplicacaoExerciseService {
                 somaTemp += cargasExterna.getForcaResultante();
             }
         }
-            explicacaoExercise.append(somaTemp).append("\\text{N}$$");
-            explicacaoExercise.append("Fazendo o equilíbrio dos momentos no primeiro apoio, encontra-se: $$ \\sum M = 0 \\rightarrow ");
-            for (int i = 0; i < forcasDeReacao.size(); i++) {
-                if (i != 0) {
-                    if (omiteMais) {
-                        explicacaoExercise.append("R_{").append(i + 1).append("}(x_{\\text{").append("apoio").append(" } ")
-                                .append(i + 1).append("} - x_{\\text{").append("apoio").append(" 1}})");
-                        omiteMais = false;
-                    } else {
-                        explicacaoExercise.append("+R_{").append(i + 1).append("}(x_{\\text{").append("apoio").append(" } ")
-                                .append(i + 1).append("} - x_{\\text{").append("apoio").append(" 1}})");
-                    }
+        explicacaoExercise.append(somaTemp).append("\\text{N}$$");
+        explicacaoExercise.append("Fazendo o equilíbrio dos momentos no primeiro apoio, encontra-se: $$ \\sum M = 0 \\rightarrow ");
+        for (int i = 0; i < forcasDeReacao.size(); i++) {
+            if (i != 0) {
+                if (omiteMais) {
+                    explicacaoExercise.append("R_{").append(i + 1).append("}(x_{\\text{").append("apoio").append(" } ")
+                            .append(i + 1).append("} - x_{\\text{").append("apoio").append(" 1}})");
+                    omiteMais = false;
+                } else {
+                    explicacaoExercise.append("+R_{").append(i + 1).append("}(x_{\\text{").append("apoio").append(" } ")
+                            .append(i + 1).append("} - x_{\\text{").append("apoio").append(" 1}})");
                 }
             }
-            omiteMais = true;
+        }
+        omiteMais = true;
+        for (int i = 0; i < cargasExternas.size(); i++) {
+            if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_PONTUAL) {
+                explicacaoExercise.append("-F_{").append(i + 1).append("}(x_{\\text{").append("força").append(" } ").append(i + 1).append("} - x_{\\text{").append("apoio").append(" 1}})");
+            }
+            if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
+                explicacaoExercise.append("-W_{").append(i + 1).append("}(\\bar{x}_{\\text{").append("força").append(" } ").append(i + 1).append("} - x_{\\text{").append("apoio").append(" 1}})");
+            }
+            if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_MOMENTO) {
+                explicacaoExercise.append("+M_{").append(i + 1).append("}");
+            }
+        }
+        explicacaoExercise.append(" = 0 $$");
+
+        if (numForcaDistribuida > 0) {
+            explicacaoExercise.append("Em que $\\bar{x}$ representa a posição de aplicação equivalente da carga distribuida, que é o centroide da geometria, calculado como:");
             for (int i = 0; i < cargasExternas.size(); i++) {
-                if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_PONTUAL) {
-                    explicacaoExercise.append("-F_{").append(i + 1).append("}(x_{\\text{").append("força").append(" } ").append(i + 1).append("} - x_{\\text{").append("apoio").append(" 1}})");
-                }
                 if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
-                    explicacaoExercise.append("-W_{").append(i + 1).append("}(\\bar{x}_{\\text{").append("força").append(" } ").append(i + 1).append("} - x_{\\text{").append("apoio").append(" 1}})");
-                }
-                if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_MOMENTO) {
-                    explicacaoExercise.append("+M_{").append(i + 1).append("}");
-                }
-            }
-            explicacaoExercise.append(" = 0 $$");
+                    var xi = cargasExternas.get(i).getPosition();
+                    var xf = cargasExternas.get(i).getPositionFinal();
+                    var wi = cargasExternas.get(i).getForcaAplicada();
+                    var wf = cargasExternas.get(i).getForcaAplicadaFinal();
 
-            if (numForcaDistribuida > 0) {
-                explicacaoExercise.append("Em que $\\bar{x}$ representa a posição de aplicação equivalente da carga distribuida, que é o centroide da geometria, calculado como:");
-                for (int i = 0; i < cargasExternas.size(); i++) {
-                    if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
-                        var xi = cargasExternas.get(i).getPosition();
-                        var xf = cargasExternas.get(i).getPositionFinal();
-                        var wi = cargasExternas.get(i).getForcaAplicada();
-                        var wf = cargasExternas.get(i).getForcaAplicadaFinal();
-
-                        if (wi == wf) { // Retângulo, carga constante
-                            explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("retangular").append(": } \\bar{x} = \\frac{x_i + x_f}{2} = \\frac{").append(xi).append("+").append(xf).append("}{2} = ").append((xi + xf) / 2).append("\\text{m}$$");
-                        } else if (wi != 0 && wf != 0) { // Trapézio
-                            explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", trapezoidal: } \\bar{x} = x_i + (x_f - x_i)\\frac{w_i/3 + 2w_f/3}{w_i + w_f} = ").append(xi).append(" + ( ").append(xf).append(" - ").append(xi).append(" ) \\frac{ (").append(wi).append(")/3 + 2(").append(wf).append(")/3}{ (").append(wi).append(") + (").append(wf).append(") } = ").append(cargasExternas.get(i).getPositionMedia()).append(" \\text{m}$$");
-                        } else if (wi == 0) { // Triângulo crescente
-                            explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("triangular crescente").append(": } \\bar{x} = \\frac{x_i + 2x_f}{3} = \\frac{").append(xi).append("+2(").append(xf).append(")}{3} = ").append(cargasExternas.get(i).getPositionMedia()).append("\\text{m}$$");
-                        } else if (wf == 0) { // Triângulo decrescente
-                            explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("triangular decrescente").append(": } \\bar{x} = \\frac{2x_i + x_f}{3} = \\frac{2(").append(xi).append(")+").append(xf).append("}{3} = ").append(cargasExternas.get(i).getPositionMedia()).append("\\text{m}$$");
-                        }
+                    if (wi == wf) { // Retângulo, carga constante
+                        explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("retangular").append(": } \\bar{x} = \\frac{x_i + x_f}{2} = \\frac{").append(xi).append("+").append(xf).append("}{2} = ").append((xi + xf) / 2).append("\\text{m}$$");
+                    } else if (wi != 0 && wf != 0) { // Trapézio
+                        explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", trapezoidal: } \\bar{x} = x_i + (x_f - x_i)\\frac{w_i/3 + 2w_f/3}{w_i + w_f} = ").append(xi).append(" + ( ").append(xf).append(" - ").append(xi).append(" ) \\frac{ (").append(wi).append(")/3 + 2(").append(wf).append(")/3}{ (").append(wi).append(") + (").append(wf).append(") } = ").append(cargasExternas.get(i).getPositionMedia()).append(" \\text{m}$$");
+                    } else if (wi == 0) { // Triângulo crescente
+                        explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("triangular crescente").append(": } \\bar{x} = \\frac{x_i + 2x_f}{3} = \\frac{").append(xi).append("+2(").append(xf).append(")}{3} = ").append(cargasExternas.get(i).getPositionMedia()).append("\\text{m}$$");
+                    } else if (wf == 0) { // Triângulo decrescente
+                        explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("triangular decrescente").append(": } \\bar{x} = \\frac{2x_i + x_f}{3} = \\frac{2(").append(xi).append(")+").append(xf).append("}{3} = ").append(cargasExternas.get(i).getPositionMedia()).append("\\text{m}$$");
                     }
                 }
             }
+        }
 
-            explicacaoExercise.append("Substituindo os valores numéricos, encontra-se $$");
-            for (int i = 0; i < forcasDeReacao.size(); i++) {
-                if (i != 0) {
-                    explicacaoExercise.append("R_{").append(i + 1).append("}(").append(apoios.get(i).getPosicao()).append(" - ").append(apoios.get(0).getPosicao()).append(")");
-                }
+        explicacaoExercise.append("Substituindo os valores numéricos, encontra-se $$");
+        for (int i = 0; i < forcasDeReacao.size(); i++) {
+            if (i != 0) {
+                explicacaoExercise.append("R_{").append(i + 1).append("}(").append(apoios.get(i).getPosicao()).append(" - ").append(apoios.get(0).getPosicao()).append(")");
             }
-            explicacaoExercise.append(" = ");
+        }
+        explicacaoExercise.append(" = ");
         for (Forcas cargasExterna : cargasExternas) {
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_PONTUAL) {
                 explicacaoExercise.append("+(").append(cargasExterna.getForcaAplicada()).append(")(").append(cargasExterna.getPosition()).append(" - ").append(apoios.get(0).getPosicao()).append(")");
@@ -187,9 +187,9 @@ public class ExplicacaoExerciseService {
                 explicacaoExercise.append("-(").append(cargasExterna.getForcaAplicada()).append(")");
             }
         }
-            explicacaoExercise.append(" \\rightarrow ");
+        explicacaoExercise.append(" \\rightarrow ");
 
-            somaTemp = 0;
+        somaTemp = 0;
         for (Forcas cargasExterna : cargasExternas) {
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_PONTUAL) {
                 somaTemp += cargasExterna.getForcaAplicada() * (cargasExterna.getPosition() - apoios.get(0).getPosicao());
@@ -202,35 +202,35 @@ public class ExplicacaoExerciseService {
             }
         }
 
-            for (int i = 0; i < forcasDeReacao.size(); i++) {
-                if (i != 0) {
-                    switch (apoios.get(i).getPosicao() - apoios.get(0).getPosicao()) {
-                        case 1:
-                            explicacaoExercise.append("R_{").append(i + 1).append("}");
-                            break;
-                        case -1:
-                            explicacaoExercise.append("-R_{").append(i + 1).append("}");
-                            break;
-                        default:
-                            explicacaoExercise.append(apoios.get(i).getPosicao() - apoios.get(0).getPosicao()).append("R_{").append(i + 1).append("}");
-                            break;
-                    }
+        for (int i = 0; i < forcasDeReacao.size(); i++) {
+            if (i != 0) {
+                switch (apoios.get(i).getPosicao() - apoios.get(0).getPosicao()) {
+                    case 1:
+                        explicacaoExercise.append("R_{").append(i + 1).append("}");
+                        break;
+                    case -1:
+                        explicacaoExercise.append("-R_{").append(i + 1).append("}");
+                        break;
+                    default:
+                        explicacaoExercise.append(apoios.get(i).getPosicao() - apoios.get(0).getPosicao()).append("R_{").append(i + 1).append("}");
+                        break;
                 }
             }
-            explicacaoExercise.append(" = ");
-            explicacaoExercise.append(somaTemp).append("\\text{N}$$ Das duas equações, encontra-se o seguinte sistema: $$");
+        }
+        explicacaoExercise.append(" = ");
+        explicacaoExercise.append(somaTemp).append("\\text{N}$$ Das duas equações, encontra-se o seguinte sistema: $$");
 
-            for (int i = 0; i < forcasDeReacao.size(); i++) {
-                if (omiteMais) {
-                    explicacaoExercise.append("R_{").append(i + 1).append("}");
-                    omiteMais = false;
-                } else {
-                    explicacaoExercise.append("+R_{").append(i + 1).append("}");
-                }
+        for (int i = 0; i < forcasDeReacao.size(); i++) {
+            if (omiteMais) {
+                explicacaoExercise.append("R_{").append(i + 1).append("}");
+                omiteMais = false;
+            } else {
+                explicacaoExercise.append("+R_{").append(i + 1).append("}");
             }
-            omiteMais = true;
-            explicacaoExercise.append(" = ");
-            somaTemp = 0;
+        }
+        omiteMais = true;
+        explicacaoExercise.append(" = ");
+        somaTemp = 0;
         for (Forcas cargasExterna : cargasExternas) {
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_PONTUAL) {
                 somaTemp += cargasExterna.getForcaAplicada();
@@ -239,8 +239,8 @@ public class ExplicacaoExerciseService {
                 somaTemp += cargasExterna.getForcaResultante();
             }
         }
-            explicacaoExercise.append(somaTemp).append("\\text{N}$$ $$ ");
-            somaTemp = 0;
+        explicacaoExercise.append(somaTemp).append("\\text{N}$$ $$ ");
+        somaTemp = 0;
         for (Forcas cargasExterna : cargasExternas) {
             if (cargasExterna.tipo == EnumForcaTipo.FORCA_PONTUAL) {
                 somaTemp += cargasExterna.getForcaAplicada() * (cargasExterna.getPosition() - apoios.get(0).getPosicao());
@@ -253,28 +253,28 @@ public class ExplicacaoExerciseService {
             }
         }
 
-            for (int i = 0; i < forcasDeReacao.size(); i++) {
-                if (i != 0) {
-                    switch (apoios.get(i).getPosicao() - apoios.get(0).getPosicao()) {
-                        case 1:
-                            explicacaoExercise.append("R_{").append(i + 1).append("}");
-                            break;
-                        case -1:
-                            explicacaoExercise.append("-R_{").append(i + 1).append("}");
-                            break;
-                        default:
-                            explicacaoExercise.append(apoios.get(i).getPosicao() - apoios.get(0).getPosicao()).append("R_{").append(i + 1).append("}");
-                            break;
-                    }
+        for (int i = 0; i < forcasDeReacao.size(); i++) {
+            if (i != 0) {
+                switch (apoios.get(i).getPosicao() - apoios.get(0).getPosicao()) {
+                    case 1:
+                        explicacaoExercise.append("R_{").append(i + 1).append("}");
+                        break;
+                    case -1:
+                        explicacaoExercise.append("-R_{").append(i + 1).append("}");
+                        break;
+                    default:
+                        explicacaoExercise.append(apoios.get(i).getPosicao() - apoios.get(0).getPosicao()).append("R_{").append(i + 1).append("}");
+                        break;
                 }
             }
-            explicacaoExercise.append(" = ");
-            explicacaoExercise.append(somaTemp).append("\\text{N}$$ Resolvendo o sistema, encontra-se:");
-            for (int i = 0; i < forcasDeReacao.size(); i++) {
-                explicacaoExercise.append("$$ R_{").append(i + 1).append("} = ").append(forcasDeReacao.get(i)
-                        .getForcaAplicada()).append("\\text{N}$$");
-            }
-            this.explicacaoExercise += explicacaoExercise.toString();
+        }
+        explicacaoExercise.append(" = ");
+        explicacaoExercise.append(somaTemp).append("\\text{N}$$ Resolvendo o sistema, encontra-se:");
+        for (int i = 0; i < forcasDeReacao.size(); i++) {
+            explicacaoExercise.append("$$ R_{").append(i + 1).append("} = ").append(forcasDeReacao.get(i)
+                    .getForcaAplicada()).append("\\text{N}$$");
+        }
+        this.explicacaoExercise += explicacaoExercise.toString();
     }
 
     public void setResultadoEsforcoCortante(List<Forcas> forcas, List<Cortante> cortanteCortantes) {
@@ -553,101 +553,103 @@ public class ExplicacaoExerciseService {
                             }
                             break;
                     }
-                    omiteMais = true;
-
-                explicacaoExercise.append(" + M(x) = 0$$");
-                explicacaoExercise.append(textoTemp);
-                explicacaoExercise.append("Substituindo os valores numéricos, encontra-se $$" + " M(x) = ");
-
-                var somaTemp = 0;
-                var somaTempx = 0;
-                var somaTempxx = 0;
-                var somaTempxxx = 0;
-                for (int j = 0; j < forcas.size(); j++) {
-                    if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
-                            (forcas.get(j).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA && forcas.get(j).getPosition() < xfinal) ||
-                            (forcas.get(j).tipo == EnumForcaTipo.FORCA_REACAO && forcas.get(j).getPosition() < xfinal) ||
-                            (forcas.get(j).tipo == EnumForcaTipo.FORCA_MOMENTO && forcas.get(j).getPosition() < xfinal)) {
-                        switch (forcas.get(j).tipo) {
-                            case FORCA_PONTUAL:
-                            case FORCA_REACAO:
-                                somaTemp += forcas.get(j).getForcaAplicada() * forcas.get(j).getPosition();
-                                somaTempx -= forcas.get(j).getForcaAplicada();
-                                break;
-                            case FORCA_DISTRIBUIDA:
-                                var wi = forcas.get(j).getForcaAplicada();
-                                var wf = forcas.get(j).getForcaAplicadaFinal();
-                                var xi = forcas.get(j).getPosition();
-                                var xf = forcas.get(j).getPositionFinal();
-                                if (forcas.get(j).getPositionFinal() < xfinal) { // A carga já está toda dentro da seção
-                                    somaTempx -= forcas.get(j).getForcaResultante();
-                                    somaTemp -= -forcas.get(j).getForcaResultante() * forcas.get(j).getPositionMedia();
-                                } else { // Ainda falta carga na seção
-                                    var r1 = (wf - wi) / (6 * (xf - xi));
-                                    var r2 = wi / 2;
-                                    somaTempxxx -= r1;
-                                    somaTempxx -= -3 * r1 * xi + r2;
-                                    somaTempx -= 3 * r1 * xi * xi - 2 * r2 * xi;
-                                    somaTemp -= -r1 * xi * xi * xi + r2 * xi * xi;
-                                }
-                                break;
-                            case FORCA_MOMENTO:
-                                somaTemp -= forcas.get(j).getForcaAplicada();
-                                break;
-                        }
-                    }
-
-                    if (somaTempxxx != 0) {
-                        explicacaoExercise.append(somaTempxxx).append("x^3");
-                    }
-                    if (somaTempxx != 0) {
-                        if (somaTempxx > 0) {
-                            if (omiteMais && somaTempxxx == 0) {
-                                explicacaoExercise.append(somaTempxx).append("x^2");
-                                omiteMais = false;
-                            } else {
-                                explicacaoExercise.append("+").append(somaTempxx).append("x^2");
-                            }
-                        } else {
-                            explicacaoExercise.append(somaTempxx).append("x^2");
-                        }
-                    }
-                    if (somaTempx != 0) {
-                        if (somaTempx > 0) {
-                            if (omiteMais && somaTempxx == 0 && somaTempxxx == 0) {
-                                explicacaoExercise.append(somaTempx).append("x");
-                                omiteMais = false;
-                            } else {
-                                explicacaoExercise.append("+").append(somaTempx).append("x");
-                            }
-                        } else {
-                            explicacaoExercise.append(somaTempx).append("x");
-                        }
-                    }
-                    if (somaTemp > 0) {
-                        if (omiteMais && somaTempx == 0 && somaTempxx == 0 && somaTempxxx == 0) {
-                            explicacaoExercise.append(somaTemp);
-                            omiteMais = false;
-                        } else {
-                            explicacaoExercise.append("+").append(somaTemp);
-                        }
-                    } else if (somaTempx == 0 && somaTempxx == 0 && somaTempxxx == 0) {
-                        explicacaoExercise.append(somaTemp);
-                    }
-                    if (somaTemp < 0) {
-                        explicacaoExercise.append(somaTemp);
-                    }
-
-                    omiteMais = true;
-
-                    explicacaoExercise.append("$$");
                 }
+            }
+                    omiteMais = true;
+
+                    explicacaoExercise.append(" + M(x) = 0$$");
+                    explicacaoExercise.append(textoTemp);
+                    explicacaoExercise.append("Substituindo os valores numéricos, encontra-se $$" + " M(x) = ");
+
+                    var somaTemp = 0;
+                    var somaTempx = 0;
+                    var somaTempxx = 0;
+                    var somaTempxxx = 0;
+                    for (int j = 0; j < forcas.size(); j++) {
+                        if ((forcas.get(j).tipo == EnumForcaTipo.FORCA_PONTUAL && forcas.get(j).getPosition() < xfinal) ||
+                                (forcas.get(j).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA && forcas.get(j).getPosition() < xfinal) ||
+                                (forcas.get(j).tipo == EnumForcaTipo.FORCA_REACAO && forcas.get(j).getPosition() < xfinal) ||
+                                (forcas.get(j).tipo == EnumForcaTipo.FORCA_MOMENTO && forcas.get(j).getPosition() < xfinal)) {
+                            switch (forcas.get(j).tipo) {
+                                case FORCA_PONTUAL:
+                                case FORCA_REACAO:
+                                    somaTemp += forcas.get(j).getForcaAplicada() * forcas.get(j).getPosition();
+                                    somaTempx -= forcas.get(j).getForcaAplicada();
+                                    break;
+                                case FORCA_DISTRIBUIDA:
+                                    var wi = forcas.get(j).getForcaAplicada();
+                                    var wf = forcas.get(j).getForcaAplicadaFinal();
+                                    var xi = forcas.get(j).getPosition();
+                                    var xf = forcas.get(j).getPositionFinal();
+                                    if (forcas.get(j).getPositionFinal() < xfinal) { // A carga já está toda dentro da seção
+                                        somaTempx -= forcas.get(j).getForcaResultante();
+                                        somaTemp -= -forcas.get(j).getForcaResultante() * forcas.get(j).getPositionMedia();
+                                    } else { // Ainda falta carga na seção
+                                        var r1 = (wf - wi) / (6 * (xf - xi));
+                                        var r2 = wi / 2;
+                                        somaTempxxx -= r1;
+                                        somaTempxx -= -3 * r1 * xi + r2;
+                                        somaTempx -= 3 * r1 * xi * xi - 2 * r2 * xi;
+                                        somaTemp -= -r1 * xi * xi * xi + r2 * xi * xi;
+                                    }
+                                    break;
+                                case FORCA_MOMENTO:
+                                    somaTemp -= forcas.get(j).getForcaAplicada();
+                                    break;
+                            }
+                        }
+
+                        if (somaTempxxx != 0) {
+                            explicacaoExercise.append(somaTempxxx).append("x^3");
+                        }
+                        if (somaTempxx != 0) {
+                            if (somaTempxx > 0) {
+                                if (omiteMais && somaTempxxx == 0) {
+                                    explicacaoExercise.append(somaTempxx).append("x^2");
+                                    omiteMais = false;
+                                } else {
+                                    explicacaoExercise.append("+").append(somaTempxx).append("x^2");
+                                }
+                            } else {
+                                explicacaoExercise.append(somaTempxx).append("x^2");
+                            }
+                        }
+                        if (somaTempx != 0) {
+                            if (somaTempx > 0) {
+                                if (omiteMais && somaTempxx == 0 && somaTempxxx == 0) {
+                                    explicacaoExercise.append(somaTempx).append("x");
+                                    omiteMais = false;
+                                } else {
+                                    explicacaoExercise.append("+").append(somaTempx).append("x");
+                                }
+                            } else {
+                                explicacaoExercise.append(somaTempx).append("x");
+                            }
+                        }
+                        if (somaTemp > 0) {
+                            if (omiteMais && somaTempx == 0 && somaTempxx == 0 && somaTempxxx == 0) {
+                                explicacaoExercise.append(somaTemp);
+                                omiteMais = false;
+                            } else {
+                                explicacaoExercise.append("+").append(somaTemp);
+                            }
+                        } else if (somaTempx == 0 && somaTempxx == 0 && somaTempxxx == 0) {
+                            explicacaoExercise.append(somaTemp);
+                        }
+                        if (somaTemp < 0) {
+                            explicacaoExercise.append(somaTemp);
+                        }
+
+                        omiteMais = true;
+
+                        explicacaoExercise.append("$$");
+                    }
+                }
+                explicacaoExercise.append("<h2> " + ("Gráfico") + " </h2> <div id='grafico-fletor' class='grafico'> </div>");
+                this.explicacaoExercise += explicacaoExercise.toString();
         }
-        explicacaoExercise.append("<h2> " + ("Gráfico") + " </h2> <div id='grafico-fletor' class='grafico'> </div>");
-        this.explicacaoExercise += explicacaoExercise.toString();
-    }
+
     public String getExplicacaoExercise() {
         return explicacaoExercise;
     }
-
 }
