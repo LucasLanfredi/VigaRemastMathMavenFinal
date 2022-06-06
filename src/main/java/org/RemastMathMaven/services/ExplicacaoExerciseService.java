@@ -18,9 +18,9 @@ public class ExplicacaoExerciseService {
     public void setExplicacaoReacoes(List<Forcas> cargasExternas, List<Apoios> apoios) {
         StringBuilder explicacaoExercise = new StringBuilder();
 
-        explicacaoExercise.append("<h2> Cálculo das Reações </h2> Para encontrarmos as reações nos apoios, é necessário verificar " +
-                "o equilíbrio de forças na vertical, para garantir que a viga não vai se mover nem " +
-                "para cima nem para baixo, e o equilíbrio de momentos, para garantir que a viga " +
+        explicacaoExercise.append("<h2> Cálculo das Reações </h2> Primeiramente precisamos encontrar o valor das forças de reação nos apoios, para isso verificamos " +
+                "o equilíbrio de forças na vertical, para garantir que a viga não vai se mova verticalmente, " +
+                "e o equilíbrio de momentos, para garantir que a viga " +
                 "não irá girar. " +
                 "Portanto, fazendo o equilíbrio de forças na vertical, encontra-se: $$ \\sum F_y = 0 \\rightarrow ");
 
@@ -73,12 +73,12 @@ public class ExplicacaoExerciseService {
         for (int i = 0; i < forcasDeReacao.size(); i++) {
             explicacaoExercise.append("-R_{").append(i + 1).append("}");
         }
-        explicacaoExercise.append(" = 0 $$ Em que: R representa as reações");
+        explicacaoExercise.append(" = 0 $$ Onde:<br> \\(R\\) representa as reações<br>");
         if (numForcaPontual > 0) {
-            explicacaoExercise.append("; F representa forças pontuais");
+            explicacaoExercise.append("\\(F\\) representa forças pontuais<br>");
         }
         if (numForcaDistribuida > 0) {
-            explicacaoExercise.append("; W representa a força total causada por uma força distribuida. Para calcular a esta força total se calcula a área abaixo da carga distribuida, portanto:");
+            explicacaoExercise.append("\\(W\\) representa a força total causada por uma força distribuida.<br> Para calcular a esta força total se calcula a área abaixo da carga distribuida, portanto:");
             for (int i = 0; i < cargasExternas.size(); i++) {
                 if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
                     var xi = cargasExternas.get(i).getPosition();
@@ -94,12 +94,12 @@ public class ExplicacaoExerciseService {
                     } else if (wf == 0) { // Triângulo decrescente
                         explicacaoExercise.append("$$ \\text{" + ("Carga") + " ").append(i + 1).append(", ").append("triangular decrescente").append(": } W_{").append(i + 1).append("} = \\frac{w_i}{2}(x_f-x_i) = \\frac{").append(wi).append("}{2}[(").append(xf).append(") - (").append(xi).append(")] = ").append(cargasExternas.get(i).getForcaResultante()).append("\\text{N}$$");
                     }
-                    explicacaoExercise.append("Em que" + xi + " e " + xf + " representam a posição inicial e final de aplicação da carga, respectivamente, e" + xi + " e " + xf + ", os valores, em N/m, iniciais e finais da carga distribuida");
+                    explicacaoExercise.append("Onde: \\(" + xi + "\\) e \\(" + xf + "\\) representam a posição inicial e final de aplicação da carga, e \\(" + xi + "\\) e \\(" + xf + "\\), os valores, em N/m, iniciais e finais da carga distribuida");
                 }
             }
         }
 
-        explicacaoExercise.append(".\nPortanto, substituindo os valores numéricos, encontra-se: $$");
+        explicacaoExercise.append("<br>Substituindo os valores numéricos, encontramos: $$");
         for (int i = 0; i < forcasDeReacao.size(); i++) {
             if (omiteMais) {
                 explicacaoExercise.append("R_{").append(i + 1).append("}");
@@ -120,7 +120,7 @@ public class ExplicacaoExerciseService {
             }
         }
         explicacaoExercise.append(somaTemp).append("\\text{N}$$");
-        explicacaoExercise.append("Fazendo o equilíbrio dos momentos no primeiro apoio, encontra-se: $$ \\sum M = 0 \\rightarrow ");
+        explicacaoExercise.append("Fazendo o equilíbrio dos momentos no primeiro apoio, encontramos: $$ \\sum M = 0 \\rightarrow ");
         for (int i = 0; i < forcasDeReacao.size(); i++) {
             if (i != 0) {
                 if (omiteMais) {
@@ -148,7 +148,7 @@ public class ExplicacaoExerciseService {
         explicacaoExercise.append(" = 0 $$");
 
         if (numForcaDistribuida > 0) {
-            explicacaoExercise.append("Em que $\\bar{x}$ representa a posição de aplicação equivalente da carga distribuida, que é o centroide da geometria, calculado como:");
+            explicacaoExercise.append("Onde \\(\\bar{x}\\) representa a posição de aplicação equivalente da carga distribuida, que é o centroide da geometria, calculado como:");
             for (int i = 0; i < cargasExternas.size(); i++) {
                 if (cargasExternas.get(i).tipo == EnumForcaTipo.FORCA_DISTRIBUIDA) {
                     var xi = cargasExternas.get(i).getPosition();
@@ -280,8 +280,8 @@ public class ExplicacaoExerciseService {
     public void setResultadoEsforcoCortante(List<Forcas> forcas, List<Cortante> cortanteCortantes) {
         var omiteMais = true;
         StringBuilder explicacaoExercise = new StringBuilder();
-        explicacaoExercise.append("<h1> Cálculo do Esforço Cortante </h1>");
-        explicacaoExercise.append("Para encontrar a equação do esforço cortante, é necessário fazer o balanço de forças verticais " + "em cada seção (que vão de $0$ até $x$ metros), ou seja: $$ \\sum F_y + V(x) = 0 $$ Em que $V(x)$ é o valor do" + " esforço cortante na posição $x$.");
+        explicacaoExercise.append("<h2> Cálculo do Esforço Cortante </h2>");
+        explicacaoExercise.append("Para encontrar a equação do esforço cortante, é necessário fazer o balanço de forças verticais " + "em cada seção (que vão de 0 até x metros), ou seja: $$ \\sum F_y + V(x) = 0 $$ Onde \\(V(x)\\) é o valor do" + " esforço cortante na posição \\(x\\).");
 
         int n = 0;
         int numCargas;
@@ -331,7 +331,7 @@ public class ExplicacaoExerciseService {
                                 } else {
                                     explicacaoExercise.append("+W_{").append(j + 1).append("x}");
                                 }
-                                textoTemp.append("Em que" + " $W_{").append(j + 1).append("x}$ ").append("representa a carga distribuida aplicada apenas ").append("até a posição $x$, e não a carga completa, até $x_f$, calculada como:");
+                                textoTemp.append("Onde" + " \\(W_{").append(j + 1).append("x}\\) ").append("representa a carga distribuida aplicada apenas ").append("até a posição \\(x\\), e não a carga completa, até \\(x_f\\), calculada como:");
                                 if (wi == wf) {
                                     var c0 = -wi * xi;
                                     textoTemp.append("$$ \\text{" + "Carga" + " ").append(j + 1).append(", ").append("retangular").append(": } W_{").append(j + 1).append("x} =  w(x-x_i) = ").append(wi).append("x ").append(c0 > 0 ? "+" : "-").append(" ").append(Math.abs(c0)).append("$$");
@@ -364,7 +364,7 @@ public class ExplicacaoExerciseService {
 
             explicacaoExercise.append(" + V(x) = 0 $$");
             explicacaoExercise.append(textoTemp);
-            explicacaoExercise.append("Substituindo os valores numéricos, encontra-se $$" + "V(x) = ");
+            explicacaoExercise.append("Substituindo os valores temos: $$" + "V(x) = ");
 
 
             int somaTemp = 0;
@@ -452,8 +452,8 @@ public class ExplicacaoExerciseService {
         StringBuilder explicacaoExercise = new StringBuilder();
         explicacaoExercise.append("<h2> Cálculo do Momento Fletor </h2>");
         explicacaoExercise.append("Para encontrar a equação do momento fletor, é necessário fazer o balanço do momento em cada seção"
-                + " (que vão de $0$ até $x$ metros), ou seja: $$ \\sum F_y(x-x_{carga}) + \\sum M + M(x) = 0 $$ Em que $M(x)$ "
-                + "é o valor do momento fletor na posição $x$.");
+                + " (que vão de <b>0</b> até <b>x</b> metros), ou seja: $$ \\sum F_y(x-x_{carga}) + \\sum M + M(x) = 0 $$ Onde \\(M(x)\\) "
+                + "é o valor do momento fletor na posição <b>x</b>.");
 
         int n = 0;
         int numCargas;
@@ -512,7 +512,7 @@ public class ExplicacaoExerciseService {
                                     explicacaoExercise.append("+W_{").append(j + 1).append("x}(x - \\bar{x}_{\\text{")
                                             .append("força").append(" }").append(j + 1).append("})");
                                 }
-                                textoTemp += "Em que" + " $W_{" + (j + 1) + "x}(x-\\bar{x})$ " + "representa o momento equivalente à carga distribuida aplicada apenas até a posição $x$, e não a carga completa, até $x_f$: ";
+                                textoTemp += "Onde" + " \\(W_{" + (j + 1) + "x}(x-\\bar{x})\\) " + "representa o momento equivalente à carga distribuida aplicada apenas até a posição \\(x\\), e não a carga completa, até \\(x_f\\): ";
                                 if (wi == wf) { // Retangular
                                     var c2 = wi / 2;
                                     var c1 = -wi * xi;
