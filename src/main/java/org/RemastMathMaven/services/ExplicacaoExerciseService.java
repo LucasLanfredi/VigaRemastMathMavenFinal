@@ -271,7 +271,7 @@ public class ExplicacaoExerciseService {
         explicacaoExercise.append(" = ");
         explicacaoExercise.append(somaTemp).append("\\text{N}$$ Resolvendo o sistema, encontra-se:");
         for (int i = 0; i < forcasDeReacao.size(); i++) {
-            explicacaoExercise.append("$$ R_{").append(i + 1).append("} = ").append(forcasDeReacao.get(i)
+            explicacaoExercise.append("$$ R_{").append(i + 1).append("} = ").append(-forcasDeReacao.get(i)
                     .getForcaAplicada()).append("\\text{N}$$");
         }
         this.explicacaoExercise += explicacaoExercise.toString();
